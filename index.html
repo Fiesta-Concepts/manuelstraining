@@ -75,7 +75,8 @@
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.1rem; }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform 0.15s, border-color 0.15s; }
     .card:hover { transform: translateY(-2px); border-color: var(--accent); }
-    .card-img { width: 100%; height: 140px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; border-bottom: 1px solid var(--border); }
+    .card-img { width: 100%; height: 140px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; border-bottom: 1px solid var(--border); overflow: hidden; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; }
     .card-body { padding: 0.9rem 1rem 1rem; }
     .card-category { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 0.3rem; }
     .card-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
@@ -102,7 +103,7 @@
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.1rem; }
     .gallery-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: border-color 0.15s; }
     .gallery-card:hover { border-color: var(--accent); }
-    .gallery-card .card-img { height: 180px; font-size: 3.5rem; }
+    .gallery-card .card-img { height: 180px; font-size: 3.5rem; overflow: hidden; }
     .gallery-card-body { padding: 1rem; }
     .gallery-card-body h3 { font-size: 0.98rem; font-weight: 600; margin-bottom: 0.45rem; }
     .gallery-card-body p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 0.65rem; }
@@ -142,6 +143,7 @@
     .plating-tips li::before { content: '★'; position: absolute; left: 0; color: var(--accent); font-size: 0.72rem; }
     .note-box { background: #2a2415; border: 1px solid #4a3e20; border-radius: var(--radius); padding: 1rem 1.1rem; margin-top: 1rem; font-size: 0.85rem; line-height: 1.6; color: #d4b96a; }
     .note-box strong { display: block; margin-bottom: 0.3rem; }
+    .modal-hero-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid var(--border); }
 
     .empty { text-align: center; padding: 4rem 2rem; color: var(--text-muted); }
     .empty .icon { font-size: 3rem; margin-bottom: 1rem; }
@@ -227,6 +229,7 @@
 <!-- Recipe Modal -->
 <div class="modal-overlay" id="modal-overlay" onclick="if(event.target.id==='modal-overlay')closeModal()">
   <div class="modal">
+    <div id="modal-hero-slot"></div>
     <div class="modal-header">
       <div><div class="modal-category" id="modal-cat"></div><div class="modal-title" id="modal-title"></div></div>
       <button class="close-btn" onclick="closeModal()">✕</button>
@@ -351,7 +354,7 @@
     document.getElementById('recipe-empty').style.display='none';
     grid.innerHTML = filtered.map(r => `
       <div class="card" onclick="openRecipeModal(${r.id})">
-        <div class="card-img">${catEmoji[r.category_en]||'🍴'}</div>
+        <div class="card-img">${r.image_url ? `<img src="${r.image_url}" alt="${tx(r.name_en,r.name_es)}" loading="lazy"/>` : (catEmoji[r.category_en]||'🍴')}</div>
         <div class="card-body">
           <div class="card-category">${tx(r.category_en,r.category_es)||''}</div>
           <div class="card-title">${tx(r.name_en,r.name_es)}</div>
@@ -411,7 +414,7 @@
   function renderGallery() {
     document.getElementById('gallery-grid').innerHTML = recipes.map(r=>`
       <div class="gallery-card" onclick="openRecipeModal(${r.id})">
-        <div class="card-img">${catEmoji[r.category_en]||'🍴'}</div>
+        <div class="card-img">${r.image_url ? `<img src="${r.image_url}" alt="${tx(r.name_en,r.name_es)}" loading="lazy"/>` : (catEmoji[r.category_en]||'🍴')}</div>
         <div class="gallery-card-body">
           <h3>${tx(r.name_en,r.name_es)}</h3>
           <p>${tx(r.plating_description_en,r.plating_description_es)||''}</p>
@@ -423,6 +426,9 @@
   // ── Modals ──
   function openRecipeModal(id) {
     const r = recipes.find(x=>x.id===id); if (!r) return;
+    // Hero image
+    const heroSlot = document.getElementById('modal-hero-slot');
+    heroSlot.innerHTML = r.image_url ? `<img class="modal-hero-img" src="${r.image_url}" alt="${tx(r.name_en,r.name_es)}"/>` : '';
     document.getElementById('modal-cat').textContent = tx(r.category_en,r.category_es)||'';
     document.getElementById('modal-title').textContent = tx(r.name_en,r.name_es);
     document.getElementById('modal-meta').innerHTML = `

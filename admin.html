@@ -231,6 +231,22 @@
       <p>Supports PDF, Word (.docx), and text files — multiple files at once</p>
     </div>
 
+    <!-- Optional Photo Attachment -->
+    <div style="margin-bottom:1.5rem">
+      <div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0.6rem">📷 Attach a photo <span style="font-size:0.75rem;opacity:0.6">(optional — will appear on the recipe/SOP card)</span></div>
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:0.6rem;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.5rem 1rem;cursor:pointer;font-size:0.85rem;color:var(--text-muted);transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+          <input type="file" id="photo-input" accept="image/*" style="display:none" onchange="handlePhotoSelect(this.files[0])"/>
+          📷 Choose Photo
+        </label>
+        <div id="photo-preview" style="display:none;align-items:center;gap:0.75rem">
+          <img id="photo-thumb" style="width:56px;height:56px;object-fit:cover;border-radius:6px;border:1px solid var(--border)" src="" alt=""/>
+          <span id="photo-name" style="font-size:0.82rem;color:var(--text-muted)"></span>
+          <button onclick="clearPhoto()" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:0.85rem">✕ Remove</button>
+        </div>
+      </div>
+    </div>
+
     <div class="log-box" id="log-box"></div>
 
     <!-- Document Library -->
@@ -253,6 +269,7 @@
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
   let docType = 'recipe';
+  let selectedPhoto = null;
 
   // ── Auth ──
   function login() {
@@ -294,6 +311,37 @@
     docType = type;
     document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+  }
+
+  // ── Photo handling ──
+  function handlePhotoSelect(file) {
+    if (!file) return;
+    selectedPhoto = file;
+    document.getElementById('photo-name').textContent = file.name;
+    document.getElementById('photo-thumb').src = URL.createObjectURL(file);
+    document.getElementById('photo-preview').style.display = 'flex';
+  }
+
+  function clearPhoto() {
+    selectedPhoto = null;
+    document.getElementById('photo-preview').style.display = 'none';
+    document.getElementById('photo-input').value = '';
+  }
+
+  async function uploadPhotoToStorage(file) {
+    const ext = file.name.split('.').pop();
+    const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const res = await fetch(`${SUPABASE_URL}/storage/v1/object/recipe-images/${filename}`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON,
+        'Authorization': `Bearer ${SUPABASE_ANON}`,
+        'Content-Type': file.type
+      },
+      body: file
+    });
+    if (!res.ok) { const e = await res.text(); throw new Error('Image upload failed: ' + e); }
+    return `${SUPABASE_URL}/storage/v1/object/public/recipe-images/${filename}`;
   }
 
   // ── Drag & Drop ──
@@ -485,6 +533,15 @@ Return ONLY a JSON code block with this exact structure:
 
   async function saveToSupabase(data, type, fileName) {
     data.source_file = fileName;
+    if (selectedPhoto) {
+      try {
+        log('📷 Uploading photo...', 'info');
+        data.image_url = await uploadPhotoToStorage(selectedPhoto);
+        log('✓ Photo uploaded', 'ok');
+      } catch (e) {
+        log('⚠️ Photo upload failed (saving without image): ' + e.message, 'err');
+      }
+    }
     await supabase('POST', type === 'recipe' ? 'recipes' : 'sops', data);
     await supabase('POST', 'uploaded_documents', {
       file_name: fileName,
@@ -493,6 +550,7 @@ Return ONLY a JSON code block with this exact structure:
       status: 'processed',
       extracted_count: 1
     });
+    clearPhoto();
   }
 
   async function loadStats() {
