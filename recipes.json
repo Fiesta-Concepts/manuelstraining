@@ -1,0 +1,379 @@
+[
+  {
+    "id": 1,
+    "category": { "en": "Kitchen Plate Presentation Dishout", "es": "Presentación de Platos – Despacho" },
+    "difficulty": "Intermediate",
+    "prepTime": "10 min",
+    "cookTime": "12 min",
+    "servings": 2,
+    "tags": ["seafood", "pan-seared", "featured", "dishout"],
+    "name": {
+      "en": "Pan-Seared Salmon",
+      "es": "Salmón a la Sartén"
+    },
+    "description": {
+      "en": "Crispy skin pan-seared salmon with lemon butter sauce.",
+      "es": "Salmón a la sartén con piel crujiente y salsa de mantequilla al limón."
+    },
+    "ingredients": {
+      "en": [
+        "2 salmon fillets (6 oz each)",
+        "2 tbsp olive oil",
+        "3 tbsp unsalted butter",
+        "2 cloves garlic, minced",
+        "1 lemon, juiced",
+        "Salt and white pepper to taste",
+        "Fresh dill for garnish"
+      ],
+      "es": [
+        "2 filetes de salmón (170 g cada uno)",
+        "2 cdas de aceite de oliva",
+        "3 cdas de mantequilla sin sal",
+        "2 dientes de ajo picados",
+        "1 limón, su jugo",
+        "Sal y pimienta blanca al gusto",
+        "Eneldo fresco para decorar"
+      ]
+    },
+    "steps": {
+      "en": [
+        "Pat salmon dry and season with salt and white pepper on both sides.",
+        "Heat olive oil in a skillet over medium-high heat until shimmering.",
+        "Place salmon skin-side down and press gently for 10 seconds.",
+        "Cook 4–5 minutes until skin is crispy, then flip.",
+        "Add butter and garlic, basting the fish continuously for 2–3 minutes.",
+        "Remove from heat, squeeze lemon juice over fish.",
+        "Rest 1 minute before plating."
+      ],
+      "es": [
+        "Secar el salmón con papel absorbente y sazonar con sal y pimienta blanca por ambos lados.",
+        "Calentar aceite de oliva en una sartén a fuego medio-alto hasta que brille.",
+        "Colocar el salmón con la piel hacia abajo y presionar suavemente durante 10 segundos.",
+        "Cocinar 4–5 minutos hasta que la piel esté crujiente, luego voltear.",
+        "Agregar mantequilla y ajo, bañando el pescado continuamente durante 2–3 minutos.",
+        "Retirar del fuego y exprimir el limón sobre el pescado.",
+        "Reposar 1 minuto antes de emplatar."
+      ]
+    },
+    "plating": {
+      "description": {
+        "en": "Place salmon skin-side up at a slight angle on a warm plate. Spoon sauce around the base. Garnish with a dill sprig and lemon wheel at the 10 o'clock position.",
+        "es": "Colocar el salmón con la piel hacia arriba en ligero ángulo sobre un plato caliente. Colocar la salsa alrededor de la base. Decorar con un ramito de eneldo y una rodaja de limón en la posición de las 10."
+      },
+      "tips": {
+        "en": [
+          "Warm the plate before service",
+          "Keep sauce portion controlled — 1 oz per plate",
+          "Dill sprig should stand upright, not lay flat"
+        ],
+        "es": [
+          "Calentar el plato antes del servicio",
+          "Controlar la porción de salsa — 30 ml por plato",
+          "El ramito de eneldo debe estar erguido, no acostado"
+        ]
+      }
+    }
+  },
+  {
+    "id": 2,
+    "category": { "en": "Kitchen Plate Presentation Dishout", "es": "Presentación de Platos – Despacho" },
+    "difficulty": "Advanced",
+    "prepTime": "15 min",
+    "cookTime": "20 min",
+    "servings": 2,
+    "tags": ["beef", "fine dining", "featured", "dishout"],
+    "name": {
+      "en": "Beef Tenderloin Medallions",
+      "es": "Medallones de Filete de Res"
+    },
+    "description": {
+      "en": "Classic beef medallions with red wine reduction and roasted vegetables.",
+      "es": "Medallones de res clásicos con reducción de vino tinto y vegetales asados."
+    },
+    "ingredients": {
+      "en": [
+        "2 beef tenderloin medallions (5 oz each)",
+        "1 tbsp canola oil",
+        "2 tbsp butter",
+        "1 sprig fresh thyme",
+        "1 cup red wine",
+        "1 cup beef stock",
+        "1 shallot, minced",
+        "Salt and black pepper"
+      ],
+      "es": [
+        "2 medallones de filete de res (140 g cada uno)",
+        "1 cda de aceite de canola",
+        "2 cdas de mantequilla",
+        "1 rama de tomillo fresco",
+        "1 taza de vino tinto",
+        "1 taza de caldo de res",
+        "1 chalote picado",
+        "Sal y pimienta negra"
+      ]
+    },
+    "steps": {
+      "en": [
+        "Temper beef 30 minutes before cooking. Season generously with salt and pepper.",
+        "Heat canola oil in a cast iron pan until smoking.",
+        "Sear medallions 2–3 minutes per side for medium-rare (internal 130°F).",
+        "Add butter and thyme, baste for 1 minute. Rest on a rack.",
+        "In the same pan, sauté shallots until soft.",
+        "Deglaze with red wine, reduce by half.",
+        "Add beef stock and reduce until sauce coats a spoon.",
+        "Strain and season sauce before plating."
+      ],
+      "es": [
+        "Atemperar la carne 30 minutos antes de cocinar. Sazonar generosamente con sal y pimienta.",
+        "Calentar aceite de canola en una sartén de hierro fundido hasta que humee.",
+        "Sellar los medallones 2–3 minutos por lado para término medio (130°F interno).",
+        "Agregar mantequilla y tomillo, bañar durante 1 minuto. Reposar en rejilla.",
+        "En la misma sartén, saltear los chalotes hasta que estén suaves.",
+        "Desglasear con vino tinto y reducir a la mitad.",
+        "Agregar caldo de res y reducir hasta que la salsa cubra una cuchara.",
+        "Colar y sazonar la salsa antes de emplatar."
+      ]
+    },
+    "plating": {
+      "description": {
+        "en": "Stack medallions slightly offset at center plate. Drizzle reduction in a half-moon arc. Place roasted veg at 3 o'clock. Finish with micro herbs on top.",
+        "es": "Apilar los medallones ligeramente descentrados en el centro del plato. Colocar la reducción en arco de media luna. Poner los vegetales asados a las 3 en punto. Terminar con microvegetales encima."
+      },
+      "tips": {
+        "en": [
+          "Always rest beef minimum 5 minutes before cutting",
+          "Sauce goes under or around the protein, never on top",
+          "Keep plate rim spotless — wipe before service"
+        ],
+        "es": [
+          "Siempre reposar la carne mínimo 5 minutos antes de cortar",
+          "La salsa va debajo o alrededor de la proteína, nunca encima",
+          "Mantener el borde del plato limpio — limpiar antes del servicio"
+        ]
+      }
+    }
+  },
+  {
+    "id": 3,
+    "category": { "en": "Kitchen Plate Presentation Frycook", "es": "Presentación de Platos – Freidora" },
+    "difficulty": "Intermediate",
+    "prepTime": "10 min",
+    "cookTime": "30 min",
+    "servings": 4,
+    "tags": ["vegetarian", "risotto", "dishout"],
+    "name": {
+      "en": "Mushroom Risotto",
+      "es": "Risotto de Hongos"
+    },
+    "description": {
+      "en": "Creamy Arborio risotto with wild mushrooms and parmesan.",
+      "es": "Risotto cremoso de Arborio con hongos silvestres y parmesano."
+    },
+    "ingredients": {
+      "en": [
+        "1.5 cups Arborio rice",
+        "4 cups warm vegetable stock",
+        "1 cup mixed wild mushrooms, sliced",
+        "1 shallot, diced",
+        "2 cloves garlic, minced",
+        "½ cup dry white wine",
+        "3 tbsp butter",
+        "½ cup grated Parmesan",
+        "Salt, pepper, fresh thyme"
+      ],
+      "es": [
+        "1½ tazas de arroz Arborio",
+        "4 tazas de caldo de vegetales caliente",
+        "1 taza de hongos silvestres mixtos, rebanados",
+        "1 chalote picado",
+        "2 dientes de ajo picados",
+        "½ taza de vino blanco seco",
+        "3 cdas de mantequilla",
+        "½ taza de parmesano rallado",
+        "Sal, pimienta, tomillo fresco"
+      ]
+    },
+    "steps": {
+      "en": [
+        "Sauté shallots and garlic in butter until translucent.",
+        "Add mushrooms and cook until golden. Remove and set aside.",
+        "Toast Arborio in the same pan 2 minutes.",
+        "Deglaze with white wine, stir until absorbed.",
+        "Add warm stock one ladle at a time, stirring constantly.",
+        "Continue adding stock and stirring for 18–20 minutes until al dente.",
+        "Fold in mushrooms, remaining butter, and Parmesan.",
+        "Season and serve immediately."
+      ],
+      "es": [
+        "Saltear chalotes y ajo en mantequilla hasta que estén transparentes.",
+        "Agregar los hongos y cocinar hasta que estén dorados. Retirar y reservar.",
+        "Tostar el Arborio en la misma sartén durante 2 minutos.",
+        "Desglasear con vino blanco, revolver hasta que se absorba.",
+        "Agregar caldo caliente de cucharón en cucharón, revolviendo constantemente.",
+        "Continuar agregando caldo y revolviendo durante 18–20 minutos hasta que esté al dente.",
+        "Incorporar los hongos, la mantequilla restante y el parmesano.",
+        "Sazonar y servir inmediatamente."
+      ]
+    },
+    "plating": {
+      "description": {
+        "en": "Spoon risotto into center of a wide, shallow bowl. Top with 3–4 sautéed mushroom pieces. Shave Parmesan tableside. Finish with a drizzle of truffle oil.",
+        "es": "Colocar el risotto en el centro de un tazón amplio y poco profundo. Cubrir con 3–4 trozos de hongos salteados. Raspar parmesano en la mesa. Terminar con un chorrito de aceite de trufa."
+      },
+      "tips": {
+        "en": [
+          "Risotto sets quickly — plate immediately after finishing",
+          "Bowl should be warm before service",
+          "Less is more — don't overload the top"
+        ],
+        "es": [
+          "El risotto se solidifica rápido — emplatar inmediatamente al terminar",
+          "El tazón debe estar caliente antes del servicio",
+          "Menos es más — no sobrecargar la parte superior"
+        ]
+      }
+    }
+  },
+  {
+    "id": 4,
+    "category": { "en": "Kitchen Plate Presentation Frycook", "es": "Presentación de Platos – Freidora" },
+    "difficulty": "Beginner",
+    "prepTime": "15 min",
+    "cookTime": "0 min",
+    "servings": 2,
+    "tags": ["salad", "classic", "beginner", "frycook"],
+    "name": {
+      "en": "Classic Caesar Salad",
+      "es": "Ensalada César Clásica"
+    },
+    "description": {
+      "en": "Romaine hearts with house-made Caesar dressing and house croutons.",
+      "es": "Corazones de lechuga romana con aderezo César de la casa y crutones artesanales."
+    },
+    "ingredients": {
+      "en": [
+        "2 romaine hearts, torn",
+        "½ cup Caesar dressing",
+        "½ cup croutons",
+        "¼ cup shaved Parmesan",
+        "Fresh cracked black pepper",
+        "1 lemon wedge"
+      ],
+      "es": [
+        "2 corazones de lechuga romana, troceados",
+        "½ taza de aderezo César",
+        "½ taza de crutones",
+        "¼ taza de parmesano en láminas",
+        "Pimienta negra recién molida",
+        "1 gajo de limón"
+      ]
+    },
+    "steps": {
+      "en": [
+        "Wash and dry romaine thoroughly — no water on leaves.",
+        "Tear into bite-sized pieces and chill until service.",
+        "Toss romaine with Caesar dressing — coat evenly, don't over-dress.",
+        "Add croutons and toss once more.",
+        "Plate immediately."
+      ],
+      "es": [
+        "Lavar y secar la lechuga completamente — sin agua en las hojas.",
+        "Trocear en pedazos del tamaño de un bocado y refrigerar hasta el servicio.",
+        "Mezclar la lechuga con el aderezo César — cubrir uniformemente, no excederse.",
+        "Agregar los crutones y mezclar una vez más.",
+        "Emplatar inmediatamente."
+      ]
+    },
+    "plating": {
+      "description": {
+        "en": "Arrange dressed leaves vertically in a chilled bowl, building height. Scatter croutons naturally. Lay Parmesan shavings across the top. Place lemon wedge at bowl edge.",
+        "es": "Acomodar las hojas aderezadas verticalmente en un tazón frío, dando altura. Dispersar los crutones naturalmente. Colocar las láminas de parmesano encima. Poner el gajo de limón al borde del tazón."
+      },
+      "tips": {
+        "en": [
+          "Chill the bowl before plating",
+          "Dress to order — never in advance",
+          "Parmesan shavings, not grated — visual texture matters"
+        ],
+        "es": [
+          "Enfriar el tazón antes de emplatar",
+          "Aderezar al momento — nunca con anticipación",
+          "Láminas de parmesano, no rallado — la textura visual importa"
+        ]
+      }
+    }
+  },
+  {
+    "id": 5,
+    "category": { "en": "Bar Drinks Presentation", "es": "Presentación de Bebidas del Bar" },
+    "difficulty": "Intermediate",
+    "prepTime": "5 min",
+    "cookTime": "3 min",
+    "servings": 1,
+    "tags": ["cocktail", "bar", "classic"],
+    "name": {
+      "en": "Classic Margarita",
+      "es": "Margarita Clásica"
+    },
+    "description": {
+      "en": "House margarita with fresh lime juice, triple sec, and silver tequila.",
+      "es": "Margarita de la casa con jugo de limón fresco, triple sec y tequila plateado."
+    },
+    "ingredients": {
+      "en": [
+        "2 oz silver tequila",
+        "1 oz triple sec",
+        "1 oz fresh lime juice",
+        "½ oz simple syrup",
+        "Kosher salt for rim",
+        "1 lime wheel for garnish",
+        "Ice"
+      ],
+      "es": [
+        "2 oz de tequila plateado",
+        "1 oz de triple sec",
+        "1 oz de jugo de limón fresco",
+        "½ oz de jarabe simple",
+        "Sal kosher para el borde",
+        "1 rodaja de limón para decorar",
+        "Hielo"
+      ]
+    },
+    "steps": {
+      "en": [
+        "Rim glass with lime juice and dip in kosher salt — half rim only, not full.",
+        "Fill a cocktail shaker with ice.",
+        "Add tequila, triple sec, fresh lime juice, and simple syrup.",
+        "Shake vigorously for 15 seconds until shaker is frosted.",
+        "Strain into glass over fresh ice.",
+        "Garnish and serve immediately."
+      ],
+      "es": [
+        "Pasar el borde del vaso por jugo de limón y sumergir en sal kosher — solo la mitad del borde, no todo.",
+        "Llenar una coctelera con hielo.",
+        "Agregar tequila, triple sec, jugo de limón fresco y jarabe simple.",
+        "Agitar vigorosamente durante 15 segundos hasta que la coctelera esté escarchada.",
+        "Colar en el vaso sobre hielo fresco.",
+        "Decorar y servir inmediatamente."
+      ]
+    },
+    "plating": {
+      "description": {
+        "en": "Serve in a chilled rocks glass or margarita glass. Half-salt rim on the right side. Lime wheel perched on the rim at 3 o'clock. Cocktail napkin under the glass.",
+        "es": "Servir en un vaso rocks frío o copa margarita. Mitad del borde con sal en el lado derecho. Rodaja de limón en el borde a las 3 en punto. Servilleta de cóctel debajo del vaso."
+      },
+      "tips": {
+        "en": [
+          "Always use fresh lime juice — never bottled",
+          "Half-salt rim allows guests to choose",
+          "Serve immediately — do not let sit"
+        ],
+        "es": [
+          "Siempre usar jugo de limón fresco — nunca embotellado",
+          "El medio borde con sal permite al cliente elegir",
+          "Servir inmediatamente — no dejar reposar"
+        ]
+      }
+    }
+  }
+]

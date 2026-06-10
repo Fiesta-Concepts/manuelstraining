@@ -1,0 +1,380 @@
+[
+  {
+    "id": 1,
+    "category": { "en": "Kitchen Preparation", "es": "Preparación de Cocina" },
+    "icon": "👨‍🍳",
+    "tags": ["kitchen", "opening", "daily"],
+    "title": {
+      "en": "Kitchen Opening Checklist",
+      "es": "Lista de Verificación de Apertura de Cocina"
+    },
+    "description": {
+      "en": "Standard procedures for opening the kitchen each morning to ensure food safety and service readiness.",
+      "es": "Procedimientos estándar para abrir la cocina cada mañana y garantizar la seguridad alimentaria y la preparación para el servicio."
+    },
+    "steps": {
+      "en": [
+        "Wash hands thoroughly before touching any equipment or food.",
+        "Check refrigerator and walk-in temperatures — must be 40°F or below. Log readings.",
+        "Inspect all produce, proteins, and dairy received. Check dates and condition.",
+        "Sanitize all prep surfaces with approved sanitizer solution (200 ppm chlorine or equivalent).",
+        "Check cutting boards — replace any with deep grooves or discoloration.",
+        "Verify and label all prepped items from previous day with date and time.",
+        "Set up station mise en place according to prep list.",
+        "Test hot holding equipment — must reach 165°F before service.",
+        "Complete and sign the Opening Checklist log before service begins."
+      ],
+      "es": [
+        "Lavarse las manos minuciosamente antes de tocar cualquier equipo o alimento.",
+        "Revisar temperaturas de refrigeradores y cámara fría — deben estar en 40°F o menos. Registrar lecturas.",
+        "Inspeccionar todos los productos, proteínas y lácteos recibidos. Verificar fechas y condición.",
+        "Sanitizar todas las superficies de preparación con solución sanitizante aprobada (200 ppm de cloro o equivalente).",
+        "Revisar tablas de corte — reemplazar las que tengan ranuras profundas o decoloración.",
+        "Verificar y etiquetar todos los artículos preparados del día anterior con fecha y hora.",
+        "Configurar la mise en place de la estación según la lista de preparación.",
+        "Probar el equipo de mantenimiento caliente — debe alcanzar 165°F antes del servicio.",
+        "Completar y firmar el registro de Lista de Apertura antes de iniciar el servicio."
+      ]
+    },
+    "notes": {
+      "en": "Any temperature violations must be reported to the chef immediately. Do not use product that has been out of temperature range.",
+      "es": "Cualquier violación de temperatura debe reportarse al chef de inmediato. No utilizar productos que hayan estado fuera del rango de temperatura."
+    }
+  },
+  {
+    "id": 2,
+    "category": { "en": "Kitchen Preparation", "es": "Preparación de Cocina" },
+    "icon": "🌡️",
+    "tags": ["kitchen", "food safety", "temperatures"],
+    "title": {
+      "en": "Temperature Control & Food Storage",
+      "es": "Control de Temperatura y Almacenamiento de Alimentos"
+    },
+    "description": {
+      "en": "Required temperature standards for storing, holding, and cooking all food items.",
+      "es": "Estándares de temperatura requeridos para almacenar, mantener y cocinar todos los alimentos."
+    },
+    "steps": {
+      "en": [
+        "DANGER ZONE: 40°F – 140°F. Food must not remain in this range for more than 2 hours total.",
+        "Cold storage: Refrigerators at 35–38°F. Freezers at 0°F or below.",
+        "Hot holding: All hot foods held at 140°F or above.",
+        "Cooking temperatures: Poultry 165°F | Ground beef 155°F | Whole beef/pork 145°F | Fish 145°F | Eggs 145°F.",
+        "Label all stored food: item name, date prepared, use-by date.",
+        "FIFO rule: First In, First Out. Rotate stock so oldest product is used first.",
+        "Store raw proteins on bottom shelves — below ready-to-eat foods.",
+        "Thaw proteins in refrigerator, under cold running water, or during cooking — never at room temperature.",
+        "Log temperatures twice daily (morning and evening) for all refrigeration units."
+      ],
+      "es": [
+        "ZONA DE PELIGRO: 40°F – 140°F. Los alimentos no deben permanecer en este rango más de 2 horas en total.",
+        "Almacenamiento en frío: Refrigeradores a 35–38°F. Congeladores a 0°F o menos.",
+        "Mantenimiento caliente: Todos los alimentos calientes a 140°F o más.",
+        "Temperaturas de cocción: Aves 165°F | Carne molida 155°F | Res/cerdo entero 145°F | Pescado 145°F | Huevos 145°F.",
+        "Etiquetar todos los alimentos almacenados: nombre, fecha de preparación, fecha de vencimiento.",
+        "Regla PEPS: Primero en Entrar, Primero en Salir. Rotar el inventario para que el producto más antiguo se use primero.",
+        "Almacenar proteínas crudas en estantes inferiores — debajo de los alimentos listos para consumir.",
+        "Descongelar proteínas en refrigerador, bajo agua fría corriente, o durante la cocción — nunca a temperatura ambiente.",
+        "Registrar temperaturas dos veces al día (mañana y noche) para todas las unidades de refrigeración."
+      ]
+    },
+    "notes": {
+      "en": "When in doubt, throw it out. The cost of a discard is always less than a food-borne illness.",
+      "es": "En caso de duda, deséchalo. El costo de un descarte siempre es menor que una enfermedad transmitida por alimentos."
+    }
+  },
+  {
+    "id": 3,
+    "category": { "en": "Kitchen Preparation", "es": "Preparación de Cocina" },
+    "icon": "🌙",
+    "tags": ["kitchen", "closing", "cleaning"],
+    "title": {
+      "en": "Kitchen Closing Procedures",
+      "es": "Procedimientos de Cierre de Cocina"
+    },
+    "description": {
+      "en": "End-of-day shutdown procedures to maintain cleanliness, safety, and readiness for the next shift.",
+      "es": "Procedimientos de cierre al final del día para mantener limpieza, seguridad y preparación para el siguiente turno."
+    },
+    "steps": {
+      "en": [
+        "Break down all stations — discard expired items, wrap and label all remaining prep.",
+        "Cool all hot foods to 70°F within 2 hours, then to 40°F within 4 additional hours before storing.",
+        "Clean and sanitize all prep surfaces, cutting boards, and equipment.",
+        "Degrease the hood and filters. Log cleaning in the hood maintenance log.",
+        "Sweep and mop all floors. Do not leave standing water.",
+        "Take out all garbage and replace liners.",
+        "Check all refrigerator and freezer doors are sealed properly.",
+        "Turn off all equipment not needed overnight. Verify gas and electrical shutoffs.",
+        "Complete the Closing Checklist and sign off."
+      ],
+      "es": [
+        "Desmontar todas las estaciones — desechar artículos vencidos, envolver y etiquetar toda la preparación restante.",
+        "Enfriar todos los alimentos calientes a 70°F en 2 horas, luego a 40°F en 4 horas adicionales antes de almacenar.",
+        "Limpiar y sanitizar todas las superficies de preparación, tablas de corte y equipos.",
+        "Desengrasear la campana extractora y los filtros. Registrar la limpieza en el libro de mantenimiento.",
+        "Barrer y trapear todos los pisos. No dejar agua estancada.",
+        "Sacar toda la basura y reemplazar las bolsas.",
+        "Verificar que todas las puertas de refrigerador y congelador estén bien selladas.",
+        "Apagar todo el equipo que no sea necesario durante la noche. Verificar apagado de gas y electricidad.",
+        "Completar la Lista de Cierre y firmar."
+      ]
+    },
+    "notes": {
+      "en": "Night manager must verify and co-sign the closing checklist before leaving. Any equipment issues must be noted and reported.",
+      "es": "El gerente nocturno debe verificar y co-firmar la lista de cierre antes de salir. Cualquier problema de equipo debe anotarse y reportarse."
+    }
+  },
+  {
+    "id": 4,
+    "category": { "en": "Bar Preparation", "es": "Preparación de Bar" },
+    "icon": "🍹",
+    "tags": ["bar", "opening", "setup"],
+    "title": {
+      "en": "Bar Opening Setup",
+      "es": "Configuración de Apertura del Bar"
+    },
+    "description": {
+      "en": "Standard bar opening procedures to ensure the bar is fully stocked, clean, and ready for service.",
+      "es": "Procedimientos estándar de apertura del bar para asegurar que esté completamente surtido, limpio y listo para el servicio."
+    },
+    "steps": {
+      "en": [
+        "Check ID on any guest who appears under 30 — no exceptions.",
+        "Sanitize the bar top and all equipment with approved solution.",
+        "Check ice machine — scoop and discard first bin. Verify ice is clean and odor-free.",
+        "Stock all liquor, mixers, and garnishes to par levels. Note any shortages.",
+        "Check all draft lines — pull and discard first 2 oz of each tap.",
+        "Cut and prep garnishes: citrus wheels, wedges, olives, cherries, herbs.",
+        "Set up speed rails and verify pour spouts are clean and in place.",
+        "Test all blenders, juicers, and POS terminals.",
+        "Complete the Bar Opening Checklist and sign before first guest."
+      ],
+      "es": [
+        "Verificar identificación de cualquier cliente que parezca menor de 30 años — sin excepciones.",
+        "Sanitizar la barra y todo el equipo con solución aprobada.",
+        "Revisar la máquina de hielo — sacar y desechar el primer contenedor. Verificar que el hielo esté limpio y sin olores.",
+        "Surtir todos los licores, mezclas y guarniciones al nivel establecido. Anotar cualquier faltante.",
+        "Revisar todas las líneas de barril — jalar y desechar las primeras 2 oz de cada grifo.",
+        "Cortar y preparar guarniciones: rodajas y gajos de cítricos, aceitunas, cerezas, hierbas.",
+        "Configurar los rieles de velocidad y verificar que los vertedores estén limpios y en su lugar.",
+        "Probar todas las licuadoras, exprimidores y terminales de punto de venta.",
+        "Completar la Lista de Apertura del Bar y firmar antes del primer cliente."
+      ]
+    },
+    "notes": {
+      "en": "Alcohol service follows all local regulations. Never serve a visibly intoxicated guest. Management must be notified immediately if there is a refusal of service.",
+      "es": "El servicio de alcohol sigue todas las regulaciones locales. Nunca servir a un cliente visiblemente intoxicado. Se debe notificar a la gerencia de inmediato si hay un rechazo de servicio."
+    }
+  },
+  {
+    "id": 5,
+    "category": { "en": "Bar Preparation", "es": "Preparación de Bar" },
+    "icon": "🧹",
+    "tags": ["bar", "closing", "cleaning"],
+    "title": {
+      "en": "Bar Closing Procedures",
+      "es": "Procedimientos de Cierre del Bar"
+    },
+    "description": {
+      "en": "End-of-night bar shutdown to maintain cleanliness, inventory accuracy, and compliance.",
+      "es": "Cierre del bar al final de la noche para mantener limpieza, exactitud del inventario y cumplimiento."
+    },
+    "steps": {
+      "en": [
+        "Last call must be announced 30 minutes before close. No new drinks after last call.",
+        "Wipe down and sanitize the entire bar top, rails, and stools.",
+        "Drain and clean all soda guns and lines. Run sanitizer solution through each.",
+        "Rinse, wash, and rack all glassware. Verify none are broken — log any breakage.",
+        "Store all cut garnishes in labeled, covered containers in the refrigerator.",
+        "Drain the ice well completely. Sanitize and leave open to dry.",
+        "Return all liquor bottles to speed rails or back bar in correct position.",
+        "Count the till and reconcile against POS sales. Report any discrepancies.",
+        "Complete and sign the Bar Closing Checklist."
+      ],
+      "es": [
+        "Deben anunciarse las últimas órdenes 30 minutos antes del cierre. No se aceptan bebidas nuevas después de esto.",
+        "Limpiar y sanitizar toda la barra, rieles y bancos.",
+        "Drenar y limpiar todas las pistolas de refresco y líneas. Pasar solución sanitizante por cada una.",
+        "Enjuagar, lavar y colocar en rejilla toda la cristalería. Verificar que no haya piezas rotas — registrar cualquier ruptura.",
+        "Guardar todas las guarniciones cortadas en contenedores tapados y etiquetados en el refrigerador.",
+        "Drenar completamente el pozo de hielo. Sanitizar y dejar abierto para que se seque.",
+        "Regresar todas las botellas a los rieles de velocidad o barra trasera en posición correcta.",
+        "Contar la caja y conciliar con las ventas del POS. Reportar cualquier discrepancia.",
+        "Completar y firmar la Lista de Cierre del Bar."
+      ]
+    },
+    "notes": {
+      "en": "All unfinished drinks must be discarded — no exceptions. Do not allow guests to leave with open containers.",
+      "es": "Todas las bebidas sin terminar deben desecharse — sin excepciones. No permitir que los clientes salgan con recipientes abiertos."
+    }
+  },
+  {
+    "id": 6,
+    "category": { "en": "Server Preparation", "es": "Preparación de Meseros" },
+    "icon": "🍽️",
+    "tags": ["server", "opening", "sidework"],
+    "title": {
+      "en": "Server Pre-Shift Sidework",
+      "es": "Trabajo de Preparación Pre-Turno del Mesero"
+    },
+    "description": {
+      "en": "Required setup tasks each server must complete before opening to ensure a smooth service.",
+      "es": "Tareas de configuración requeridas que cada mesero debe completar antes de abrir para asegurar un servicio fluido."
+    },
+    "steps": {
+      "en": [
+        "Clock in 15 minutes before your scheduled shift — no exceptions.",
+        "Check the reservation list and floor plan. Know your section.",
+        "Polish all silverware and glassware in your section. No spots, no smudges.",
+        "Set tables: tablecloth, silverware, glassware, and centerpiece per standard.",
+        "Fill salt, pepper, and condiment holders. Check expiration on all condiments.",
+        "Stock server station: napkins, straws, extra silverware, check presenters.",
+        "Attend pre-shift meeting. Learn daily specials, 86'd items, and any VIP notes.",
+        "Review the menu — be ready to answer all questions and suggest pairings.",
+        "Complete assigned sidework and initial the Sidework Checklist."
+      ],
+      "es": [
+        "Marcar entrada 15 minutos antes de tu turno programado — sin excepciones.",
+        "Revisar la lista de reservaciones y el plano del piso. Conoce tu sección.",
+        "Pulir toda la cubertería y cristalería de tu sección. Sin manchas ni huellas.",
+        "Poner las mesas: mantel, cubertería, cristalería y centros de mesa según el estándar.",
+        "Rellenar saleros, pimenteros y condimentos. Verificar la fecha de vencimiento de todos los condimentos.",
+        "Surtir la estación del mesero: servilletas, popotes, cubertería extra y portacuentas.",
+        "Asistir a la reunión pre-turno. Aprender los especiales del día, artículos agotados y notas de VIP.",
+        "Repasar el menú — estar listo para responder todas las preguntas y sugerir maridajes.",
+        "Completar el trabajo asignado e inicializar la Lista de Verificación de Preparación."
+      ]
+    },
+    "notes": {
+      "en": "Servers arriving unprepared or late will be assigned additional sidework. Professional appearance is mandatory — check dress code before clocking in.",
+      "es": "Los meseros que lleguen sin preparación o tarde recibirán trabajo adicional de preparación. La presentación profesional es obligatoria — revisar el código de vestimenta antes de marcar entrada."
+    }
+  },
+  {
+    "id": 7,
+    "category": { "en": "Server Preparation", "es": "Preparación de Meseros" },
+    "icon": "💬",
+    "tags": ["server", "service", "guest experience"],
+    "title": {
+      "en": "Table Service & Guest Interaction Standards",
+      "es": "Estándares de Servicio en Mesa e Interacción con el Cliente"
+    },
+    "description": {
+      "en": "Service flow and guest interaction standards to ensure a consistent, excellent dining experience.",
+      "es": "Flujo de servicio y estándares de interacción con el cliente para garantizar una experiencia gastronómica consistente y excelente."
+    },
+    "steps": {
+      "en": [
+        "Greet table within 60 seconds of seating. Make eye contact, smile, introduce yourself.",
+        "Offer water immediately. Know your filtered/sparkling options.",
+        "Take drink orders within 2 minutes. Suggest a cocktail or wine pairing.",
+        "Deliver drinks and take food order. Suggest appetizers and specials.",
+        "Check back within 2 minutes of food delivery — verify satisfaction, offer refills.",
+        "Clear finished plates promptly. Do not let empty dishes sit.",
+        "Offer dessert or coffee after clearing the main. Describe options — don't just hand the menu.",
+        "Present the check only when asked or when table is clearly finished.",
+        "Process payment promptly. Return change or receipt within 2 minutes."
+      ],
+      "es": [
+        "Saludar a la mesa dentro de los 60 segundos después de sentarse. Hacer contacto visual, sonreír, presentarse.",
+        "Ofrecer agua inmediatamente. Conocer las opciones de agua filtrada/con gas.",
+        "Tomar órdenes de bebidas en 2 minutos. Sugerir un cóctel o maridaje de vino.",
+        "Entregar bebidas y tomar la orden de comida. Sugerir aperitivos y especiales.",
+        "Revisar en los primeros 2 minutos después de entregar la comida — verificar satisfacción, ofrecer recargas.",
+        "Retirar platos terminados rápidamente. No dejar platos vacíos en la mesa.",
+        "Ofrecer postre o café después de retirar el plato principal. Describir opciones — no solo entregar el menú.",
+        "Presentar la cuenta solo cuando se solicite o cuando la mesa claramente haya terminado.",
+        "Procesar el pago rápidamente. Devolver cambio o recibo en 2 minutos."
+      ]
+    },
+    "notes": {
+      "en": "Never rush a table. Guest satisfaction is the priority. If a problem arises, notify a manager immediately — do not try to handle complaints about food quality alone.",
+      "es": "Nunca apresures a una mesa. La satisfacción del cliente es la prioridad. Si surge un problema, notificar al gerente de inmediato — no intentes manejar quejas sobre la calidad de la comida solo."
+    }
+  },
+  {
+    "id": 8,
+    "category": { "en": "Greeter Preparation", "es": "Preparación de Recepcionistas" },
+    "icon": "🚪",
+    "tags": ["greeter", "host", "opening"],
+    "title": {
+      "en": "Host / Greeter Opening Procedures",
+      "es": "Procedimientos de Apertura del Anfitrión / Recepcionista"
+    },
+    "description": {
+      "en": "Setup and standards for the host stand to ensure a welcoming first impression and smooth seating flow.",
+      "es": "Configuración y estándares para la recepción para garantizar una primera impresión acogedora y un flujo de asientos fluido."
+    },
+    "steps": {
+      "en": [
+        "Arrive 20 minutes before open. Review reservation system for the full day.",
+        "Print floor plan and confirm table assignments with management.",
+        "Ensure host stand is clean, organized, and stocked: menus, crayons (if applicable), reservation book.",
+        "Confirm all menus are clean and in good condition — replace any with tears or stains.",
+        "Walk the floor — verify all tables are set correctly before doors open.",
+        "Coordinate with servers: confirm section assignments and any special needs (highchairs, accessibility).",
+        "Be at the door and ready to greet at opening time. Smile, make eye contact, welcome warmly.",
+        "For waiting guests: provide accurate wait times, offer a buzzer or text notification, and check in every 5 minutes.",
+        "Seat guests promptly and in rotation unless management directs otherwise."
+      ],
+      "es": [
+        "Llegar 20 minutos antes de abrir. Revisar el sistema de reservaciones para todo el día.",
+        "Imprimir el plano del piso y confirmar las asignaciones de mesa con la gerencia.",
+        "Asegurarse de que la recepción esté limpia, organizada y bien surtida: menús, crayones (si aplica), libro de reservaciones.",
+        "Verificar que todos los menús estén limpios y en buenas condiciones — reemplazar los que tengan rasguños o manchas.",
+        "Recorrer el piso — verificar que todas las mesas estén configuradas correctamente antes de abrir las puertas.",
+        "Coordinarse con los meseros: confirmar asignaciones de sección y necesidades especiales (sillas altas, accesibilidad).",
+        "Estar en la puerta y listo para saludar a la hora de apertura. Sonreír, hacer contacto visual, dar la bienvenida calurosamente.",
+        "Para clientes en espera: dar tiempos de espera precisos, ofrecer vibrador o notificación por texto, y hacer check-in cada 5 minutos.",
+        "Sentar a los clientes rápidamente y en rotación a menos que la gerencia indique lo contrario."
+      ]
+    },
+    "notes": {
+      "en": "The host is the first and last impression. Never seat guests at a dirty or improperly set table. Always apologize for wait times, even short ones.",
+      "es": "El anfitrión es la primera y última impresión. Nunca sentar clientes en una mesa sucia o mal configurada. Siempre disculparse por los tiempos de espera, incluso los cortos."
+    }
+  },
+  {
+    "id": 9,
+    "category": { "en": "Greeter Preparation", "es": "Preparación de Recepcionistas" },
+    "icon": "📋",
+    "tags": ["greeter", "reservations", "waitlist"],
+    "title": {
+      "en": "Reservation & Waitlist Management",
+      "es": "Gestión de Reservaciones y Lista de Espera"
+    },
+    "description": {
+      "en": "How to handle reservations, walk-ins, and waitlists effectively to maximize covers and guest satisfaction.",
+      "es": "Cómo manejar reservaciones, clientes sin reserva y listas de espera de manera efectiva para maximizar cubiertos y satisfacción del cliente."
+    },
+    "steps": {
+      "en": [
+        "Confirm all reservations by phone or system 24 hours in advance for parties of 6+.",
+        "Hold a reserved table for 15 minutes past reservation time. After 15 minutes, contact management.",
+        "For walk-ins, quote an honest wait time — overestimating is better than underestimating.",
+        "Take down name, party size, and phone number for the waitlist.",
+        "Text or buzz guests when their table is ready — give them 5 minutes to return before moving to next.",
+        "Never quote wait times you cannot deliver. Check table turnover before committing.",
+        "Log all no-shows and late cancellations in the system.",
+        "Communicate large parties or VIP arrivals to the kitchen and management 10 minutes in advance.",
+        "End-of-shift: reconcile reservation count vs. actual covers. Report to manager."
+      ],
+      "es": [
+        "Confirmar todas las reservaciones por teléfono o sistema 24 horas antes para grupos de 6 o más.",
+        "Mantener una mesa reservada por 15 minutos después de la hora de reservación. Después de 15 minutos, contactar a la gerencia.",
+        "Para clientes sin reserva, dar un tiempo de espera honesto — es mejor sobreestimar que subestimar.",
+        "Tomar nombre, tamaño del grupo y número de teléfono para la lista de espera.",
+        "Enviar mensaje de texto o señal al cliente cuando su mesa esté lista — darle 5 minutos para regresar antes de pasar al siguiente.",
+        "Nunca cotizar tiempos de espera que no puedas cumplir. Verificar la rotación de mesas antes de comprometerse.",
+        "Registrar todas las ausencias y cancelaciones tardías en el sistema.",
+        "Comunicar grupos grandes o llegadas VIP a la cocina y gerencia con 10 minutos de anticipación.",
+        "Al final del turno: reconciliar el recuento de reservaciones vs. cubiertos reales. Reportar al gerente."
+      ]
+    },
+    "notes": {
+      "en": "Never double-book a table without management approval. A guest who waits and is then turned away is a lost customer.",
+      "es": "Nunca hacer una doble reservación de mesa sin aprobación de la gerencia. Un cliente que espera y luego es rechazado es un cliente perdido."
+    }
+  }
+]
