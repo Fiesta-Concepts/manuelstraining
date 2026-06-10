@@ -6,30 +6,17 @@
   <title>Manuel's Training App</title>
   <style>
     :root {
-      --bg: #0f0f0f;
-      --surface: #1a1a1a;
-      --surface2: #242424;
-      --border: #2e2e2e;
-      --accent: #c9a84c;
-      --accent-light: #e8c46a;
-      --text: #f0ede8;
-      --text-muted: #888;
+      --bg: #0f0f0f; --surface: #1a1a1a; --surface2: #242424; --border: #2e2e2e;
+      --accent: #c9a84c; --accent-light: #e8c46a; --text: #f0ede8; --text-muted: #888;
       --radius: 10px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-    /* ── Header ── */
     header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 0 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 60px;
-      position: sticky; top: 0; z-index: 100;
-      gap: 1rem;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem; display: flex; align-items: center;
+      justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; gap: 1rem;
     }
     .logo { font-size: 1.1rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
     .logo span { color: var(--text); font-weight: 400; }
@@ -41,27 +28,18 @@
     nav button:hover { color: var(--text); background: var(--surface2); }
     nav button.active { color: var(--accent); background: var(--surface2); }
 
-    /* Language toggle */
-    .lang-toggle {
-      display: flex;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
+    .lang-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
     .lang-toggle button {
       background: none; border: none; color: var(--text-muted);
-      padding: 0.35rem 0.7rem; cursor: pointer; font-size: 0.82rem; font-weight: 600;
-      transition: all 0.15s;
+      padding: 0.35rem 0.7rem; cursor: pointer; font-size: 0.82rem; font-weight: 600; transition: all 0.15s;
     }
     .lang-toggle button.active { background: var(--accent); color: #000; }
 
-    /* ── Layout ── */
     main { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
     .view { display: none; }
     .view.active { display: block; }
 
-    /* ── Hero ── */
+    /* Hero */
     .hero { text-align: center; padding: 3.5rem 1rem 2.5rem; }
     .hero h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.2; }
     .hero h1 span { color: var(--accent); }
@@ -69,16 +47,12 @@
     .stats { display: flex; justify-content: center; gap: 3rem; margin-top: 2.5rem; flex-wrap: wrap; }
     .stat .num { font-size: 2rem; font-weight: 700; color: var(--accent); }
     .stat .label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
-    .btn {
-      display: inline-block; background: var(--accent); color: #000;
-      font-weight: 700; padding: 0.6rem 1.4rem; border-radius: 6px; border: none;
-      cursor: pointer; font-size: 0.92rem; transition: background 0.15s;
-    }
+    .btn { display: inline-block; background: var(--accent); color: #000; font-weight: 700; padding: 0.6rem 1.4rem; border-radius: 6px; border: none; cursor: pointer; font-size: 0.92rem; transition: background 0.15s; text-decoration: none; }
     .btn:hover { background: var(--accent-light); }
     .btn-ghost { background: none; border: 1px solid var(--border); color: var(--text); }
     .btn-ghost:hover { background: var(--surface2); }
 
-    /* ── Toolbar ── */
+    /* Toolbar */
     .toolbar { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center; }
     .search-wrap { flex: 1; min-width: 180px; position: relative; }
     .search-wrap input {
@@ -89,32 +63,19 @@
     .search-wrap input:focus { border-color: var(--accent); }
     .search-wrap .sicon { position: absolute; left: 0.7rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
     .filter-pills { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-    .pill {
-      background: var(--surface); border: 1px solid var(--border); color: var(--text-muted);
-      padding: 0.35rem 0.8rem; border-radius: 20px; font-size: 0.8rem; cursor: pointer;
-      transition: all 0.15s; white-space: nowrap;
-    }
+    .pill { background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); padding: 0.35rem 0.8rem; border-radius: 20px; font-size: 0.8rem; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
     .pill:hover { border-color: var(--accent); color: var(--text); }
     .pill.active { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 600; }
 
-    /* ── Section heading ── */
     .section-heading { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.25rem; }
     .section-heading h2 { font-size: 1.25rem; font-weight: 600; }
     .section-heading span { font-size: 0.8rem; color: var(--text-muted); }
 
-    /* ── Recipe Grid ── */
+    /* Cards */
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.1rem; }
-    .card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden; cursor: pointer;
-      transition: transform 0.15s, border-color 0.15s;
-    }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform 0.15s, border-color 0.15s; }
     .card:hover { transform: translateY(-2px); border-color: var(--accent); }
-    .card-img {
-      width: 100%; height: 140px; background: var(--surface2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.8rem; border-bottom: 1px solid var(--border);
-    }
+    .card-img { width: 100%; height: 140px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; border-bottom: 1px solid var(--border); }
     .card-body { padding: 0.9rem 1rem 1rem; }
     .card-category { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 0.3rem; }
     .card-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
@@ -125,18 +86,11 @@
     .badge-intermediate { background: #3a2e1a; color: #e0b46b; }
     .badge-advanced { background: #3a1a1a; color: #e06b6b; }
 
-    /* ── SOPs ── */
+    /* SOPs */
     .sop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.1rem; }
-    .sop-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); cursor: pointer;
-      transition: transform 0.15s, border-color 0.15s; overflow: hidden;
-    }
+    .sop-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: transform 0.15s, border-color 0.15s; overflow: hidden; }
     .sop-card:hover { transform: translateY(-2px); border-color: var(--accent); }
-    .sop-card-header {
-      display: flex; align-items: center; gap: 0.85rem;
-      padding: 1rem 1.1rem; border-bottom: 1px solid var(--border);
-    }
+    .sop-card-header { display: flex; align-items: center; gap: 0.85rem; padding: 1rem 1.1rem; border-bottom: 1px solid var(--border); }
     .sop-icon { font-size: 1.8rem; flex-shrink: 0; }
     .sop-card-title { font-size: 0.98rem; font-weight: 600; }
     .sop-card-cat { font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.2rem; }
@@ -144,58 +98,30 @@
     .sop-card-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 0.7rem; }
     .sop-step-count { font-size: 0.76rem; color: var(--text-muted); }
 
-    /* ── Plating Gallery ── */
+    /* Gallery */
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.1rem; }
-    .gallery-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden; cursor: pointer;
-      transition: border-color 0.15s;
-    }
+    .gallery-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: border-color 0.15s; }
     .gallery-card:hover { border-color: var(--accent); }
     .gallery-card .card-img { height: 180px; font-size: 3.5rem; }
     .gallery-card-body { padding: 1rem; }
     .gallery-card-body h3 { font-size: 0.98rem; font-weight: 600; margin-bottom: 0.45rem; }
     .gallery-card-body p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 0.65rem; }
-    .tip-tag {
-      display: inline-block; background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 4px; padding: 0.18rem 0.5rem; font-size: 0.73rem; color: var(--text-muted); margin: 0.15rem;
-    }
+    .tip-tag { display: inline-block; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 0.18rem 0.5rem; font-size: 0.73rem; color: var(--text-muted); margin: 0.15rem; }
 
-    /* ── Modal ── */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.82); z-index: 200;
-      overflow-y: auto; padding: 1.5rem 1rem;
-    }
+    /* Modal */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.82); z-index: 200; overflow-y: auto; padding: 1.5rem 1rem; }
     .modal-overlay.open { display: flex; justify-content: center; align-items: flex-start; }
-    .modal {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; max-width: 700px; width: 100%; overflow: hidden;
-    }
-    .modal-header {
-      padding: 1.4rem 1.6rem 0;
-      display: flex; justify-content: space-between; align-items: flex-start;
-    }
+    .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; max-width: 700px; width: 100%; overflow: hidden; }
+    .modal-header { padding: 1.4rem 1.6rem 0; display: flex; justify-content: space-between; align-items: flex-start; }
     .modal-title { font-size: 1.4rem; font-weight: 700; }
     .modal-category { color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
-    .close-btn {
-      background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted);
-      width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 1rem;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-left: 1rem;
-    }
+    .close-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-left: 1rem; }
     .close-btn:hover { color: var(--text); }
-    .modal-meta {
-      display: flex; gap: 1.25rem; padding: 0.9rem 1.6rem;
-      border-bottom: 1px solid var(--border); flex-wrap: wrap;
-    }
+    .modal-meta { display: flex; gap: 1.25rem; padding: 0.9rem 1.6rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
     .modal-meta-item { font-size: 0.82rem; color: var(--text-muted); }
     .modal-meta-item strong { color: var(--text); }
     .modal-tabs { display: flex; border-bottom: 1px solid var(--border); }
-    .modal-tab {
-      flex: 1; background: none; border: none; color: var(--text-muted);
-      padding: 0.8rem; cursor: pointer; font-size: 0.85rem;
-      border-bottom: 2px solid transparent; transition: all 0.15s;
-    }
+    .modal-tab { flex: 1; background: none; border: none; color: var(--text-muted); padding: 0.8rem; cursor: pointer; font-size: 0.85rem; border-bottom: 2px solid transparent; transition: all 0.15s; }
     .modal-tab:hover { color: var(--text); }
     .modal-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
     .modal-body { padding: 1.4rem 1.6rem; }
@@ -203,46 +129,27 @@
     .tab-panel.active { display: block; }
 
     .ingredients-list { list-style: none; }
-    .ingredients-list li {
-      padding: 0.5rem 0; border-bottom: 1px solid var(--border);
-      font-size: 0.88rem; display: flex; align-items: center; gap: 0.55rem;
-    }
+    .ingredients-list li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; display: flex; align-items: center; gap: 0.55rem; }
     .ingredients-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-
     .steps-list { list-style: none; counter-reset: steps; }
-    .steps-list li {
-      counter-increment: steps; padding: 0.8rem 0 0.8rem 3rem;
-      border-bottom: 1px solid var(--border); font-size: 0.88rem; line-height: 1.6; position: relative;
-    }
-    .steps-list li::before {
-      content: counter(steps); position: absolute; left: 0; top: 0.8rem;
-      width: 26px; height: 26px; background: var(--accent); color: #000;
-      font-weight: 700; font-size: 0.78rem; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .plating-box {
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.1rem; margin-bottom: 1rem;
-    }
+    .steps-list li { counter-increment: steps; padding: 0.8rem 0 0.8rem 3rem; border-bottom: 1px solid var(--border); font-size: 0.88rem; line-height: 1.6; position: relative; }
+    .steps-list li::before { content: counter(steps); position: absolute; left: 0; top: 0.8rem; width: 26px; height: 26px; background: var(--accent); color: #000; font-weight: 700; font-size: 0.78rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .plating-box { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem; margin-bottom: 1rem; }
     .plating-box p { font-size: 0.9rem; line-height: 1.7; }
     .plating-tips { list-style: none; }
     .plating-tips h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 0.4rem; }
-    .plating-tips li {
-      padding: 0.45rem 0 0.45rem 1.4rem; font-size: 0.85rem; color: var(--text-muted);
-      position: relative; border-bottom: 1px solid var(--border);
-    }
+    .plating-tips li { padding: 0.45rem 0 0.45rem 1.4rem; font-size: 0.85rem; color: var(--text-muted); position: relative; border-bottom: 1px solid var(--border); }
     .plating-tips li::before { content: '★'; position: absolute; left: 0; color: var(--accent); font-size: 0.72rem; }
-
-    .note-box {
-      background: #2a2415; border: 1px solid #4a3e20;
-      border-radius: var(--radius); padding: 1rem 1.1rem; margin-top: 1rem;
-      font-size: 0.85rem; line-height: 1.6; color: #d4b96a;
-    }
+    .note-box { background: #2a2415; border: 1px solid #4a3e20; border-radius: var(--radius); padding: 1rem 1.1rem; margin-top: 1rem; font-size: 0.85rem; line-height: 1.6; color: #d4b96a; }
     .note-box strong { display: block; margin-bottom: 0.3rem; }
 
     .empty { text-align: center; padding: 4rem 2rem; color: var(--text-muted); }
     .empty .icon { font-size: 3rem; margin-bottom: 1rem; }
+
+    /* Loading */
+    .loading { text-align: center; padding: 4rem; color: var(--text-muted); }
+    .spinner { display: inline-block; width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 1rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
@@ -255,15 +162,16 @@
     <button onclick="showView('sops', this)" data-i18n="nav_sops">SOPs</button>
     <button onclick="showView('plating', this)" data-i18n="nav_plating">Plating</button>
   </nav>
-  <div class="lang-toggle">
-    <button class="active" onclick="setLang('en', this)">EN</button>
-    <button onclick="setLang('es', this)">ES</button>
+  <div style="display:flex;align-items:center;gap:0.75rem">
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('en', this)">EN</button>
+      <button onclick="setLang('es', this)">ES</button>
+    </div>
+    <a href="admin.html" style="font-size:0.78rem;color:var(--text-muted);text-decoration:none;padding:0.3rem 0.6rem;border:1px solid var(--border);border-radius:4px">Admin</a>
   </div>
 </header>
 
 <main>
-
-  <!-- HOME -->
   <section class="view active" id="view-home">
     <div class="hero">
       <h1 id="hero-title">Kitchen <span>Excellence</span><br>Training Hub</h1>
@@ -275,65 +183,52 @@
     <div class="stats" id="home-stats"></div>
   </section>
 
-  <!-- RECIPES -->
   <section class="view" id="view-recipes">
     <div class="section-heading">
-      <h2 data-i18n="nav_recipes">Recipe Library</h2>
+      <h2 data-i18n="nav_recipes">Recipes</h2>
       <span id="recipe-count"></span>
     </div>
     <div class="toolbar">
       <div class="search-wrap">
         <span class="sicon">🔍</span>
-        <input type="text" id="recipe-search" data-i18n-placeholder="search_recipes" placeholder="Search recipes…" oninput="filterRecipes()"/>
+        <input type="text" id="recipe-search" placeholder="Search recipes…" oninput="filterRecipes()"/>
       </div>
       <div class="filter-pills" id="recipe-filter-pills"></div>
     </div>
-    <div class="grid" id="recipe-grid"></div>
-    <div class="empty" id="recipe-empty" style="display:none">
-      <div class="icon">🍽️</div>
-      <p data-i18n="no_results">No results found.</p>
-    </div>
+    <div id="recipe-grid" class="grid"></div>
+    <div class="empty" id="recipe-empty" style="display:none"><div class="icon">🍽️</div><p data-i18n="no_results">No results found.</p></div>
   </section>
 
-  <!-- SOPS -->
   <section class="view" id="view-sops">
     <div class="section-heading">
-      <h2 data-i18n="nav_sops">Standard Operating Procedures</h2>
+      <h2 data-i18n="nav_sops">SOPs</h2>
       <span id="sop-count"></span>
     </div>
     <div class="toolbar">
       <div class="search-wrap">
         <span class="sicon">🔍</span>
-        <input type="text" id="sop-search" data-i18n-placeholder="search_sops" placeholder="Search SOPs…" oninput="filterSOPs()"/>
+        <input type="text" id="sop-search" placeholder="Search SOPs…" oninput="filterSOPs()"/>
       </div>
       <div class="filter-pills" id="sop-filter-pills"></div>
     </div>
-    <div class="sop-grid" id="sop-grid"></div>
-    <div class="empty" id="sop-empty" style="display:none">
-      <div class="icon">📋</div>
-      <p data-i18n="no_results">No results found.</p>
-    </div>
+    <div id="sop-grid" class="sop-grid"></div>
+    <div class="empty" id="sop-empty" style="display:none"><div class="icon">📋</div><p data-i18n="no_results">No results found.</p></div>
   </section>
 
-  <!-- PLATING -->
   <section class="view" id="view-plating">
     <div class="section-heading">
       <h2 data-i18n="nav_plating">Plate Presentations</h2>
-      <span data-i18n="plating_sub">Technique guides for every dish</span>
+      <span id="plating-sub">Technique guides for every dish</span>
     </div>
     <div class="gallery-grid" id="gallery-grid"></div>
   </section>
-
 </main>
 
-<!-- MODAL (recipes & plating) -->
-<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
-  <div class="modal" id="modal">
+<!-- Recipe Modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="if(event.target.id==='modal-overlay')closeModal()">
+  <div class="modal">
     <div class="modal-header">
-      <div>
-        <div class="modal-category" id="modal-cat"></div>
-        <div class="modal-title" id="modal-title"></div>
-      </div>
+      <div><div class="modal-category" id="modal-cat"></div><div class="modal-title" id="modal-title"></div></div>
       <button class="close-btn" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-meta" id="modal-meta"></div>
@@ -342,14 +237,11 @@
   </div>
 </div>
 
-<!-- SOP MODAL -->
-<div class="modal-overlay" id="sop-overlay" onclick="handleSOPOverlayClick(event)">
-  <div class="modal" id="sop-modal">
+<!-- SOP Modal -->
+<div class="modal-overlay" id="sop-overlay" onclick="if(event.target.id==='sop-overlay')closeSOPModal()">
+  <div class="modal">
     <div class="modal-header">
-      <div>
-        <div class="modal-category" id="sop-modal-cat"></div>
-        <div class="modal-title" id="sop-modal-title"></div>
-      </div>
+      <div><div class="modal-category" id="sop-modal-cat"></div><div class="modal-title" id="sop-modal-title"></div></div>
       <button class="close-btn" onclick="closeSOPModal()">✕</button>
     </div>
     <div class="modal-body" id="sop-modal-body"></div>
@@ -357,101 +249,73 @@
 </div>
 
 <script>
-  // ── i18n ──
-  let lang = 'en';
-  const i18n = {
-    en: {
-      nav_home: 'Home', nav_recipes: 'Recipes', nav_sops: 'SOPs', nav_plating: 'Plating',
-      btn_recipes: 'Browse Recipes', btn_sops: 'View SOPs',
-      search_recipes: 'Search recipes…', search_sops: 'Search SOPs…',
-      no_results: 'No results found.',
-      plating_sub: 'Technique guides for every dish',
-      hero_title: 'Kitchen <span>Excellence</span><br>Training Hub',
-      hero_title_es: 'Centro de <span>Excelencia</span><br>Culinaria',
-      hero_sub: 'Master recipes, SOPs, and plating techniques — all in one place.',
-      hero_sub_es: 'Domina recetas, PSOPs y técnicas de emplatado — todo en un solo lugar.',
-      filter_all: 'All', tab_ingredients: 'Ingredients', tab_steps: 'Steps', tab_plating: 'Plating',
-      prep: 'Prep', cook: 'Cook', serves: 'Serves', difficulty: 'Level',
-      note_label: '⚠️ Note', sop_steps: 'steps'
-    },
-    es: {
-      nav_home: 'Inicio', nav_recipes: 'Recetas', nav_sops: 'PSOPs', nav_plating: 'Emplatado',
-      btn_recipes: 'Ver Recetas', btn_sops: 'Ver PSOPs',
-      search_recipes: 'Buscar recetas…', search_sops: 'Buscar PSOPs…',
-      no_results: 'No se encontraron resultados.',
-      plating_sub: 'Guías de técnica para cada plato',
-      hero_sub: 'Domina recetas, PSOPs y técnicas de emplatado — todo en un solo lugar.',
-      filter_all: 'Todos', tab_ingredients: 'Ingredientes', tab_steps: 'Pasos', tab_plating: 'Emplatado',
-      prep: 'Prep', cook: 'Cocción', serves: 'Porciones', difficulty: 'Nivel',
-      note_label: '⚠️ Nota', sop_steps: 'pasos'
-    }
-  };
+  const SUPABASE_URL = 'https://dagbgtnmastmcwjpqzvb.supabase.co';
+  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhZ2JndG5tYXN0bWN3anBxenZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxODczNTEsImV4cCI6MjA5MTc2MzM1MX0.G_arQB1He1KvcS66JVXwCCKzbpaDPCkXQ5tQuZPGc3I';
 
-  function t(key) { return i18n[lang][key] || i18n.en[key] || key; }
-  function tx(obj) { return obj && (obj[lang] || obj.en) || ''; }
+  let lang = 'en';
+  let recipes = [], sops = [];
+  let activeRecipeFilter = 'all', activeSOPFilter = 'all';
+
+  const i18n = {
+    en: { nav_home:'Home', nav_recipes:'Recipes', nav_sops:'SOPs', nav_plating:'Plating', btn_recipes:'Browse Recipes', btn_sops:'View SOPs', no_results:'No results found.', filter_all:'All', tab_ingredients:'Ingredients', tab_steps:'Steps', tab_plating:'Plating', prep:'Prep', cook:'Cook', serves:'Serves', sop_steps:'steps', note_label:'⚠️ Note' },
+    es: { nav_home:'Inicio', nav_recipes:'Recetas', nav_sops:'PSOPs', nav_plating:'Emplatado', btn_recipes:'Ver Recetas', btn_sops:'Ver PSOPs', no_results:'No se encontraron resultados.', filter_all:'Todos', tab_ingredients:'Ingredientes', tab_steps:'Pasos', tab_plating:'Emplatado', prep:'Prep', cook:'Cocción', serves:'Porciones', sop_steps:'pasos', note_label:'⚠️ Nota' }
+  };
+  function t(k) { return i18n[lang][k] || i18n.en[k] || k; }
+  function tx(en, es) { return (lang === 'es' && es) ? es : (en || ''); }
+  function txa(en, es) { return (lang === 'es' && es && es.length) ? es : (en || []); }
+
+  const catEmoji = {'Kitchen Plate Presentation Dishout':'🍽️','Kitchen Plate Presentation Frycook':'🍳','Bar Drinks Presentation':'🍹','Bar Preparation':'🍸','Kitchen Preparation':'👨‍🍳','Server Preparation':'🤵','Greeter Preparation':'🚪'};
+
+  async function sbGet(path) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+      headers: { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}` }
+    });
+    return res.json();
+  }
+
+  async function init() {
+    const [r, s] = await Promise.all([
+      sbGet('recipes?select=*&order=created_at.asc'),
+      sbGet('sops?select=*&order=created_at.asc')
+    ]);
+    recipes = Array.isArray(r) ? r : [];
+    sops = Array.isArray(s) ? s : [];
+    renderAll();
+    renderStats();
+  }
+
+  function renderAll() {
+    applyI18n();
+    buildRecipeFilters(); filterRecipes();
+    buildSOPFilters(); filterSOPs();
+    renderGallery();
+  }
+
+  function applyI18n() {
+    document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.getAttribute('data-i18n'); if (t(k)) el.textContent = t(k); });
+    document.getElementById('hero-title').innerHTML = lang === 'es' ? 'Centro de <span>Excelencia</span><br>Culinaria' : 'Kitchen <span>Excellence</span><br>Training Hub';
+    document.getElementById('hero-sub').textContent = lang === 'es' ? 'Domina recetas, PSOPs y técnicas de emplatado — todo en un solo lugar.' : 'Master recipes, SOPs, and plating techniques — all in one place.';
+    document.getElementById('plating-sub').textContent = lang === 'es' ? 'Guías de técnica para cada plato' : 'Technique guides for every dish';
+    document.getElementById('recipe-search').placeholder = lang === 'es' ? 'Buscar recetas…' : 'Search recipes…';
+    document.getElementById('sop-search').placeholder = lang === 'es' ? 'Buscar PSOPs…' : 'Search SOPs…';
+  }
 
   function setLang(l, btn) {
     lang = l;
     document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    document.documentElement.lang = l;
-    applyI18n();
     renderAll();
   }
 
-  function applyI18n() {
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (t(key)) el.textContent = t(key);
-    });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-      const key = el.getAttribute('data-i18n-placeholder');
-      el.placeholder = t(key);
-    });
-    const heroTitle = document.getElementById('hero-title');
-    if (heroTitle) heroTitle.innerHTML = lang === 'es'
-      ? 'Centro de <span>Excelencia</span><br>Culinaria'
-      : 'Kitchen <span>Excellence</span><br>Training Hub';
-    const heroSub = document.getElementById('hero-sub');
-    if (heroSub) heroSub.textContent = lang === 'es'
-      ? 'Domina recetas, PSOPs y técnicas de emplatado — todo en un solo lugar.'
-      : 'Master recipes, SOPs, and plating techniques — all in one place.';
-  }
-
-  // ── Data ──
-  let recipes = [], sops = [];
-  let activeRecipeFilter = 'all', activeSOPFilter = 'all';
-
-  const catEmoji = { Seafood:'🐟', Mariscos:'🐟', Beef:'🥩', Res:'🥩', Vegetarian:'🥦', Vegetariano:'🥦', Salads:'🥗', Ensaladas:'🥗', Poultry:'🍗', Pasta:'🍝', Desserts:'🍮', Soups:'🍲' };
-
-  Promise.all([
-    fetch('recipes.json').then(r => r.json()),
-    fetch('sops.json').then(r => r.json())
-  ]).then(([r, s]) => {
-    recipes = r; sops = s;
-    renderAll();
-    renderStats();
-  });
-
-  function renderAll() {
-    buildRecipeFilters();
-    filterRecipes();
-    buildSOPFilters();
-    filterSOPs();
-    renderGallery();
-  }
-
-  // ── Stats ──
   function renderStats() {
-    const cats = new Set(recipes.map(r => tx(r.category)));
+    const cats = new Set(recipes.map(r => r.category_en));
     document.getElementById('home-stats').innerHTML = `
-      <div class="stat"><div class="num">${recipes.length}</div><div class="label">${lang === 'es' ? 'Recetas' : 'Recipes'}</div></div>
-      <div class="stat"><div class="num">${sops.length}</div><div class="label">${lang === 'es' ? 'PSOPs' : 'SOPs'}</div></div>
-      <div class="stat"><div class="num">${cats.size}</div><div class="label">${lang === 'es' ? 'Categorías' : 'Categories'}</div></div>
+      <div class="stat"><div class="num">${recipes.length}</div><div class="label">${lang==='es'?'Recetas':'Recipes'}</div></div>
+      <div class="stat"><div class="num">${sops.length}</div><div class="label">${lang==='es'?'PSOPs':'SOPs'}</div></div>
+      <div class="stat"><div class="num">${cats.size}</div><div class="label">${lang==='es'?'Categorías':'Categories'}</div></div>
     `;
   }
 
-  // ── Views ──
   function showView(id, btn) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
@@ -461,186 +325,152 @@
 
   // ── Recipes ──
   function buildRecipeFilters() {
-    const cats = ['all', ...new Set(recipes.map(r => r.category.en))];
+    const cats = ['all', ...new Set(recipes.map(r => r.category_en).filter(Boolean))];
     document.getElementById('recipe-filter-pills').innerHTML = cats.map(c =>
-      `<button class="pill${c === activeRecipeFilter ? ' active' : ''}" onclick="setRecipeFilter('${c}', this)">
-        ${c === 'all' ? t('filter_all') : (lang === 'es' ? (recipes.find(r => r.category.en === c)?.category.es || c) : c)}
-      </button>`
-    ).join('');
+      `<button class="pill${c===activeRecipeFilter?' active':''}" onclick="setRecipeFilter('${c}',this)">
+        ${c==='all' ? t('filter_all') : (lang==='es' ? (recipes.find(r=>r.category_en===c)?.category_es||c) : c)}
+      </button>`).join('');
   }
-
   function setRecipeFilter(cat, btn) {
     activeRecipeFilter = cat;
-    document.querySelectorAll('#recipe-filter-pills .pill').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    filterRecipes();
+    document.querySelectorAll('#recipe-filter-pills .pill').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active'); filterRecipes();
   }
-
   function filterRecipes() {
-    const q = (document.getElementById('recipe-search')?.value || '').toLowerCase();
+    const q = (document.getElementById('recipe-search')?.value||'').toLowerCase();
     const filtered = recipes.filter(r => {
-      const matchCat = activeRecipeFilter === 'all' || r.category.en === activeRecipeFilter;
-      const name = tx(r.name).toLowerCase();
-      const desc = tx(r.description).toLowerCase();
-      const matchQ = !q || name.includes(q) || desc.includes(q) || (r.tags || []).some(t => t.includes(q));
+      const matchCat = activeRecipeFilter==='all' || r.category_en===activeRecipeFilter;
+      const name = tx(r.name_en,r.name_es).toLowerCase();
+      const desc = tx(r.description_en,r.description_es).toLowerCase();
+      const matchQ = !q || name.includes(q) || desc.includes(q) || (r.tags||[]).some(t=>t.includes(q));
       return matchCat && matchQ;
     });
     const grid = document.getElementById('recipe-grid');
-    document.getElementById('recipe-count').textContent = filtered.length + (lang === 'es' ? ' receta' : ' recipe') + (filtered.length !== 1 ? 's' : '');
+    document.getElementById('recipe-count').textContent = filtered.length + (lang==='es'?' receta':' recipe') + (filtered.length!==1?'s':'');
+    if (!filtered.length) { grid.innerHTML=''; document.getElementById('recipe-empty').style.display='block'; return; }
+    document.getElementById('recipe-empty').style.display='none';
     grid.innerHTML = filtered.map(r => `
       <div class="card" onclick="openRecipeModal(${r.id})">
-        <div class="card-img">${catEmoji[r.category.en] || '🍴'}</div>
+        <div class="card-img">${catEmoji[r.category_en]||'🍴'}</div>
         <div class="card-body">
-          <div class="card-category">${tx(r.category)}</div>
-          <div class="card-title">${tx(r.name)}</div>
-          <div class="card-desc">${tx(r.description)}</div>
+          <div class="card-category">${tx(r.category_en,r.category_es)||''}</div>
+          <div class="card-title">${tx(r.name_en,r.name_es)}</div>
+          <div class="card-desc">${tx(r.description_en,r.description_es)||''}</div>
           <div class="card-meta">
-            <span>⏱ ${r.prepTime}</span>
-            <span>🔥 ${r.cookTime}</span>
-            <span>👥 ${r.servings}</span>
+            ${r.prep_time?`<span>⏱ ${r.prep_time}</span>`:''}
+            ${r.cook_time?`<span>🔥 ${r.cook_time}</span>`:''}
+            ${r.servings?`<span>👥 ${r.servings}</span>`:''}
           </div>
-          <span class="badge badge-${r.difficulty.toLowerCase()}">${r.difficulty}</span>
+          ${r.difficulty?`<span class="badge badge-${(r.difficulty||'').toLowerCase()}">${r.difficulty}</span>`:''}
         </div>
-      </div>
-    `).join('');
-    document.getElementById('recipe-empty').style.display = filtered.length ? 'none' : 'block';
+      </div>`).join('');
   }
 
   // ── SOPs ──
   function buildSOPFilters() {
-    const cats = ['all', ...new Set(sops.map(s => s.category.en))];
-    document.getElementById('sop-filter-pills').innerHTML = cats.map(c =>
-      `<button class="pill${c === activeSOPFilter ? ' active' : ''}" onclick="setSOPFilter('${c}', this)">
-        ${c === 'all' ? t('filter_all') : (lang === 'es' ? (sops.find(s => s.category.en === c)?.category.es || c) : c)}
-      </button>`
-    ).join('');
+    const cats = ['all', ...new Set(sops.map(s=>s.category_en).filter(Boolean))];
+    document.getElementById('sop-filter-pills').innerHTML = cats.map(c=>
+      `<button class="pill${c===activeSOPFilter?' active':''}" onclick="setSOPFilter('${c}',this)">
+        ${c==='all'?t('filter_all'):(lang==='es'?(sops.find(s=>s.category_en===c)?.category_es||c):c)}
+      </button>`).join('');
   }
-
   function setSOPFilter(cat, btn) {
     activeSOPFilter = cat;
-    document.querySelectorAll('#sop-filter-pills .pill').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    filterSOPs();
+    document.querySelectorAll('#sop-filter-pills .pill').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active'); filterSOPs();
   }
-
   function filterSOPs() {
-    const q = (document.getElementById('sop-search')?.value || '').toLowerCase();
+    const q = (document.getElementById('sop-search')?.value||'').toLowerCase();
     const filtered = sops.filter(s => {
-      const matchCat = activeSOPFilter === 'all' || s.category.en === activeSOPFilter;
-      const title = tx(s.title).toLowerCase();
-      const desc = tx(s.description).toLowerCase();
-      const matchQ = !q || title.includes(q) || desc.includes(q) || (s.tags || []).some(t => t.includes(q));
+      const matchCat = activeSOPFilter==='all'||s.category_en===activeSOPFilter;
+      const title = tx(s.title_en,s.title_es).toLowerCase();
+      const desc = tx(s.description_en,s.description_es).toLowerCase();
+      const matchQ = !q||title.includes(q)||desc.includes(q)||(s.tags||[]).some(t=>t.includes(q));
       return matchCat && matchQ;
     });
     const grid = document.getElementById('sop-grid');
-    document.getElementById('sop-count').textContent = filtered.length + (lang === 'es' ? ' procedimiento' : ' procedure') + (filtered.length !== 1 ? 's' : '');
+    document.getElementById('sop-count').textContent = filtered.length+(lang==='es'?' procedimiento':' procedure')+(filtered.length!==1?'s':'');
+    if (!filtered.length) { grid.innerHTML=''; document.getElementById('sop-empty').style.display='block'; return; }
+    document.getElementById('sop-empty').style.display='none';
     grid.innerHTML = filtered.map(s => {
-      const steps = tx(s.steps);
-      const count = Array.isArray(steps) ? steps.length : 0;
-      return `
-        <div class="sop-card" onclick="openSOPModal(${s.id})">
-          <div class="sop-card-header">
-            <div class="sop-icon">${s.icon || '📋'}</div>
-            <div>
-              <div class="sop-card-title">${tx(s.title)}</div>
-              <div class="sop-card-cat">${tx(s.category)}</div>
-            </div>
-          </div>
-          <div class="sop-card-body">
-            <div class="sop-card-desc">${tx(s.description)}</div>
-            <div class="sop-step-count">${count} ${t('sop_steps')}</div>
-          </div>
+      const steps = txa(s.steps_en,s.steps_es);
+      return `<div class="sop-card" onclick="openSOPModal(${s.id})">
+        <div class="sop-card-header">
+          <div class="sop-icon">${s.icon||'📋'}</div>
+          <div><div class="sop-card-title">${tx(s.title_en,s.title_es)}</div>
+          <div class="sop-card-cat">${tx(s.category_en,s.category_es)||''}</div></div>
         </div>
-      `;
-    }).join('');
-    document.getElementById('sop-empty').style.display = filtered.length ? 'none' : 'block';
+        <div class="sop-card-body">
+          <div class="sop-card-desc">${tx(s.description_en,s.description_es)||''}</div>
+          <div class="sop-step-count">${Array.isArray(steps)?steps.length:0} ${t('sop_steps')}</div>
+        </div>
+      </div>`;}).join('');
   }
 
-  // ── Plating Gallery ──
+  // ── Gallery ──
   function renderGallery() {
-    document.getElementById('gallery-grid').innerHTML = recipes.map(r => `
-      <div class="gallery-card" onclick="openRecipeModal(${r.id}); setTimeout(() => switchRecipeTab('plating', document.querySelectorAll('#modal-tabs .modal-tab')[2]), 50)">
-        <div class="card-img">${catEmoji[r.category.en] || '🍴'}</div>
+    document.getElementById('gallery-grid').innerHTML = recipes.map(r=>`
+      <div class="gallery-card" onclick="openRecipeModal(${r.id})">
+        <div class="card-img">${catEmoji[r.category_en]||'🍴'}</div>
         <div class="gallery-card-body">
-          <h3>${tx(r.name)}</h3>
-          <p>${tx(r.plating.description)}</p>
-          ${(tx(r.plating.tips) || []).map(tip => `<span class="tip-tag">${tip}</span>`).join('')}
+          <h3>${tx(r.name_en,r.name_es)}</h3>
+          <p>${tx(r.plating_description_en,r.plating_description_es)||''}</p>
+          ${(txa(r.plating_tips_en,r.plating_tips_es)||[]).map(tip=>`<span class="tip-tag">${tip}</span>`).join('')}
         </div>
-      </div>
-    `).join('');
+      </div>`).join('');
   }
 
-  // ── Recipe Modal ──
+  // ── Modals ──
   function openRecipeModal(id) {
-    const r = recipes.find(x => x.id === id);
-    if (!r) return;
-    document.getElementById('modal-cat').textContent = tx(r.category);
-    document.getElementById('modal-title').textContent = tx(r.name);
+    const r = recipes.find(x=>x.id===id); if (!r) return;
+    document.getElementById('modal-cat').textContent = tx(r.category_en,r.category_es)||'';
+    document.getElementById('modal-title').textContent = tx(r.name_en,r.name_es);
     document.getElementById('modal-meta').innerHTML = `
-      <div class="modal-meta-item">${t('prep')} <strong>${r.prepTime}</strong></div>
-      <div class="modal-meta-item">${t('cook')} <strong>${r.cookTime}</strong></div>
-      <div class="modal-meta-item">${t('serves')} <strong>${r.servings}</strong></div>
-      <div class="modal-meta-item">${t('difficulty')} <strong>${r.difficulty}</strong></div>
-    `;
+      ${r.prep_time?`<div class="modal-meta-item">${t('prep')} <strong>${r.prep_time}</strong></div>`:''}
+      ${r.cook_time?`<div class="modal-meta-item">${t('cook')} <strong>${r.cook_time}</strong></div>`:''}
+      ${r.servings?`<div class="modal-meta-item">${t('serves')} <strong>${r.servings}</strong></div>`:''}
+      ${r.difficulty?`<div class="modal-meta-item"><strong>${r.difficulty}</strong></div>`:''}`;
     document.getElementById('modal-tabs').innerHTML = `
-      <button class="modal-tab active" onclick="switchRecipeTab('ingredients', this)">${t('tab_ingredients')}</button>
-      <button class="modal-tab" onclick="switchRecipeTab('steps', this)">${t('tab_steps')}</button>
-      <button class="modal-tab" onclick="switchRecipeTab('plating', this)">${t('tab_plating')}</button>
-    `;
-    const ingredients = tx(r.ingredients) || [];
-    const steps = tx(r.steps) || [];
-    const platingDesc = tx(r.plating.description);
-    const platingTips = tx(r.plating.tips) || [];
+      <button class="modal-tab active" onclick="switchTab('rp-ingredients',this)">${t('tab_ingredients')}</button>
+      <button class="modal-tab" onclick="switchTab('rp-steps',this)">${t('tab_steps')}</button>
+      <button class="modal-tab" onclick="switchTab('rp-plating',this)">${t('tab_plating')}</button>`;
+    const ing = txa(r.ingredients_en,r.ingredients_es)||[];
+    const steps = txa(r.steps_en,r.steps_es)||[];
+    const tips = txa(r.plating_tips_en,r.plating_tips_es)||[];
     document.getElementById('modal-body').innerHTML = `
-      <div class="tab-panel active" id="rp-ingredients">
-        <ul class="ingredients-list">${ingredients.map(i => `<li>${i}</li>`).join('')}</ul>
-      </div>
-      <div class="tab-panel" id="rp-steps">
-        <ol class="steps-list">${steps.map(s => `<li>${s}</li>`).join('')}</ol>
-      </div>
+      <div class="tab-panel active" id="rp-ingredients"><ul class="ingredients-list">${ing.map(i=>`<li>${i}</li>`).join('')}</ul></div>
+      <div class="tab-panel" id="rp-steps"><ol class="steps-list">${steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>
       <div class="tab-panel" id="rp-plating">
-        <div class="plating-box"><p>${platingDesc}</p></div>
-        <ul class="plating-tips">
-          <h4>${lang === 'es' ? 'Consejos de Emplatado' : 'Plating Tips'}</h4>
-          ${platingTips.map(tp => `<li>${tp}</li>`).join('')}
-        </ul>
-      </div>
-    `;
+        <div class="plating-box"><p>${tx(r.plating_description_en,r.plating_description_es)||''}</p></div>
+        <ul class="plating-tips"><h4>${lang==='es'?'Consejos de Emplatado':'Plating Tips'}</h4>${tips.map(tp=>`<li>${tp}</li>`).join('')}</ul>
+      </div>`;
     document.getElementById('modal-overlay').classList.add('open');
   }
-
-  function switchRecipeTab(name, btn) {
-    document.querySelectorAll('#modal-body .tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('#modal-tabs .modal-tab').forEach(t => t.classList.remove('active'));
-    const panel = document.getElementById('rp-' + name);
-    if (panel) panel.classList.add('active');
-    if (btn) btn.classList.add('active');
+  function switchTab(id, btn) {
+    document.querySelectorAll('#modal-body .tab-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('#modal-tabs .modal-tab').forEach(t=>t.classList.remove('active'));
+    document.getElementById(id)?.classList.add('active');
+    btn.classList.add('active');
   }
-
   function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
-  function handleOverlayClick(e) { if (e.target.id === 'modal-overlay') closeModal(); }
 
-  // ── SOP Modal ──
   function openSOPModal(id) {
-    const s = sops.find(x => x.id === id);
-    if (!s) return;
-    document.getElementById('sop-modal-cat').textContent = `${s.icon || ''} ${tx(s.category)}`;
-    document.getElementById('sop-modal-title').textContent = tx(s.title);
-    const steps = tx(s.steps) || [];
-    const note = tx(s.notes);
+    const s = sops.find(x=>x.id===id); if (!s) return;
+    document.getElementById('sop-modal-cat').textContent = `${s.icon||''} ${tx(s.category_en,s.category_es)||''}`;
+    document.getElementById('sop-modal-title').textContent = tx(s.title_en,s.title_es);
+    const steps = txa(s.steps_en,s.steps_es)||[];
+    const note = tx(s.notes_en,s.notes_es);
     document.getElementById('sop-modal-body').innerHTML = `
-      <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.6;margin-bottom:1rem;">${tx(s.description)}</p>
-      <ol class="steps-list">${steps.map(step => `<li>${step}</li>`).join('')}</ol>
-      ${note ? `<div class="note-box"><strong>${t('note_label')}</strong>${note}</div>` : ''}
-    `;
+      <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.6;margin-bottom:1rem;">${tx(s.description_en,s.description_es)||''}</p>
+      <ol class="steps-list">${steps.map(step=>`<li>${step}</li>`).join('')}</ol>
+      ${note?`<div class="note-box"><strong>${t('note_label')}</strong>${note}</div>`:''}`;
     document.getElementById('sop-overlay').classList.add('open');
   }
-
   function closeSOPModal() { document.getElementById('sop-overlay').classList.remove('open'); }
-  function handleSOPOverlayClick(e) { if (e.target.id === 'sop-overlay') closeSOPModal(); }
 
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeSOPModal(); } });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape'){closeModal();closeSOPModal();} });
+
+  init();
 </script>
-
 </body>
 </html>
