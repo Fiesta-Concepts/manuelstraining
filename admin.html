@@ -9,9 +9,9 @@
   <style>
     html { font-size: 17px; }
     :root {
-      --bg: #495867; --surface: #577399; --surface2: #3e4f5f; --border: rgba(189,213,234,0.25);
-      --accent: #fe5f55; --accent-light: #ff8078; --text: #f7f7ff; --text-muted: #bdd5ea;
-      --green: #5edda0; --red: #ff6b6b; --radius: 10px;
+      --bg: #353535; --surface: #284b63; --surface2: #1e3a4f; --border: rgba(217,217,217,0.18);
+      --accent: #3c6e71; --accent-light: #4d8e92; --text: #ffffff; --text-muted: #d9d9d9;
+      --green: #5edda0; --red: #ff7070; --radius: 10px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
@@ -45,8 +45,8 @@
     .logo span { color: var(--text); font-weight: 400; }
     .header-right { display: flex; align-items: center; gap: 1rem; }
     .badge-admin {
-      background: rgba(254,95,85,0.15); border: 1px solid var(--accent);
-      color: #ffb0aa; font-size: 0.72rem; font-weight: 700;
+      background: rgba(60,110,113,0.3); border: 1px solid var(--accent);
+      color: #d9d9d9; font-size: 0.72rem; font-weight: 700;
       padding: 0.2rem 0.6rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em;
     }
     .btn {
@@ -54,7 +54,7 @@
       padding: 0.5rem 1.2rem; border-radius: 6px; border: none; cursor: pointer;
       font-size: 0.88rem; transition: background 0.15s;
     }
-    .btn:hover { background: var(--accent-light); color: #1a1710; }
+    .btn:hover { background: var(--accent-light); color: #fff; }
     .btn-ghost { background: none; border: 1px solid var(--border); color: var(--text-muted); }
     .btn-ghost:hover { color: var(--text); background: var(--surface2); }
     .btn-danger { background: var(--red); color: #fff; }
@@ -64,10 +64,10 @@
     main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
 
     .setup-banner {
-      background: rgba(254,95,85,0.1); border: 1px solid rgba(254,95,85,0.3);
+      background: rgba(60,110,113,0.18); border: 1px solid rgba(60,110,113,0.4);
       border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 2rem;
     }
-    .setup-banner h3 { font-size: 0.95rem; color: #ffb0aa; margin-bottom: 0.75rem; }
+    .setup-banner h3 { font-size: 0.95rem; color: #d9d9d9; margin-bottom: 0.75rem; }
     .setup-row { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; }
     .setup-row label { font-size: 0.82rem; color: var(--text-muted); width: 120px; flex-shrink: 0; }
     .setup-row input {
@@ -86,7 +86,7 @@
       padding: 3rem 2rem; text-align: center; cursor: pointer;
       transition: border-color 0.2s, background 0.2s; margin-bottom: 1.5rem;
     }
-    .upload-zone:hover, .upload-zone.drag-over { border-color: var(--accent); background: rgba(254,95,85,0.08); }
+    .upload-zone:hover, .upload-zone.drag-over { border-color: var(--accent); background: rgba(60,110,113,0.12); }
     .upload-zone .icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
     .upload-zone h3 { font-size: 1rem; margin-bottom: 0.4rem; }
     .upload-zone p { font-size: 0.83rem; color: var(--text-muted); }
@@ -99,7 +99,7 @@
       cursor: pointer; text-align: center; transition: all 0.15s; font-size: 0.9rem;
     }
     .type-btn:hover { border-color: var(--accent); color: var(--text); }
-    .type-btn.active { background: rgba(254,95,85,0.15); border-color: var(--accent); color: #ffb0aa; font-weight: 600; }
+    .type-btn.active { background: rgba(60,110,113,0.25); border-color: var(--accent); color: #ffffff; font-weight: 600; }
     .type-btn .type-icon { font-size: 1.4rem; margin-bottom: 0.3rem; }
 
     .log-box {
@@ -147,8 +147,8 @@
     .recipe-thumb-placeholder { width: 48px; height: 48px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
     .recipe-name-link { color: var(--text); cursor: pointer; font-weight: 600; border-bottom: 1px dashed var(--border); transition: color 0.15s; }
     .recipe-name-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
-    .btn-hide { background: rgba(254,95,85,0.15); border: 1px solid rgba(254,95,85,0.4); color: #ffb0aa; font-size: 0.78rem; padding: 0.3rem 0.75rem; border-radius: 5px; cursor: pointer; font-weight: 600; white-space: nowrap; }
-    .btn-hide:hover { background: rgba(254,95,85,0.25); }
+    .btn-hide { background: rgba(217,217,217,0.12); border: 1px solid rgba(217,217,217,0.3); color: #d9d9d9; font-size: 0.78rem; padding: 0.3rem 0.75rem; border-radius: 5px; cursor: pointer; font-weight: 600; white-space: nowrap; }
+    .btn-hide:hover { background: rgba(217,217,217,0.22); }
     .btn-show { background: rgba(94,221,160,0.15); border: 1px solid rgba(94,221,160,0.4); color: #5edda0; font-size: 0.78rem; padding: 0.3rem 0.75rem; border-radius: 5px; cursor: pointer; font-weight: 600; white-space: nowrap; }
     .btn-show:hover { background: rgba(94,221,160,0.25); }
     .visible-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.4rem; }
@@ -159,7 +159,7 @@
     .cat-mgr { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 2rem; }
     .cat-mgr-head { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1.1rem; background: var(--surface2); border-bottom: 1px solid var(--border); }
     .cat-mgr-head h3 { font-size: 0.95rem; font-weight: 700; }
-    .cat-add-form { display: none; padding: 1rem 1.1rem; border-top: 1px solid var(--border); background: rgba(254,95,85,0.08); gap: 0.75rem; flex-wrap: wrap; align-items: flex-end; }
+    .cat-add-form { display: none; padding: 1rem 1.1rem; border-top: 1px solid var(--border); background: rgba(60,110,113,0.12); gap: 0.75rem; flex-wrap: wrap; align-items: flex-end; }
     .cat-add-form.open { display: flex; }
     .cat-add-form > div { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; min-width: 140px; }
     .cat-add-form label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 700; }
@@ -189,7 +189,7 @@
       padding: 0.55rem 0.8rem; border-radius: 6px; font-size: 0.87rem; outline: none;
       font-family: inherit; transition: border-color 0.15s;
     }
-    .edit-field input:focus, .edit-field textarea:focus, .edit-field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(254,95,85,0.18); }
+    .edit-field input:focus, .edit-field textarea:focus, .edit-field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(60,110,113,0.28); }
     .edit-field textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
     .edit-field textarea.tall { min-height: 130px; }
     .edit-hint { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.15rem; }
