@@ -9,9 +9,9 @@
   <style>
     html { font-size: 17px; }
     :root {
-      --bg: #faf8f4; --surface: #ffffff; --surface2: #f5f1eb; --border: #e2dbd0;
-      --accent: #c9a84c; --accent-light: #e8c46a; --text: #1a1710; --text-muted: #6b6358;
-      --green: #2d7a4a; --red: #c03030; --radius: 10px;
+      --bg: #495867; --surface: #577399; --surface2: #3e4f5f; --border: rgba(189,213,234,0.25);
+      --accent: #fe5f55; --accent-light: #ff8078; --text: #f7f7ff; --text-muted: #bdd5ea;
+      --green: #5edda0; --red: #ff6b6b; --radius: 10px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
@@ -21,7 +21,7 @@
     .login-box {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 12px; padding: 2.5rem; width: 100%; max-width: 380px; text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35);
     }
     .login-box h1 { font-size: 1.4rem; margin-bottom: 0.4rem; }
     .login-box p { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.75rem; }
@@ -45,8 +45,8 @@
     .logo span { color: var(--text); font-weight: 400; }
     .header-right { display: flex; align-items: center; gap: 1rem; }
     .badge-admin {
-      background: #fef3d0; border: 1px solid var(--accent);
-      color: #8a5c00; font-size: 0.72rem; font-weight: 700;
+      background: rgba(254,95,85,0.15); border: 1px solid var(--accent);
+      color: #ffb0aa; font-size: 0.72rem; font-weight: 700;
       padding: 0.2rem 0.6rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em;
     }
     .btn {
@@ -64,10 +64,10 @@
     main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
 
     .setup-banner {
-      background: #fef9ec; border: 1px solid #e8d080;
+      background: rgba(254,95,85,0.1); border: 1px solid rgba(254,95,85,0.3);
       border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 2rem;
     }
-    .setup-banner h3 { font-size: 0.95rem; color: #7a5500; margin-bottom: 0.75rem; }
+    .setup-banner h3 { font-size: 0.95rem; color: #ffb0aa; margin-bottom: 0.75rem; }
     .setup-row { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; }
     .setup-row label { font-size: 0.82rem; color: var(--text-muted); width: 120px; flex-shrink: 0; }
     .setup-row input {
@@ -86,7 +86,7 @@
       padding: 3rem 2rem; text-align: center; cursor: pointer;
       transition: border-color 0.2s, background 0.2s; margin-bottom: 1.5rem;
     }
-    .upload-zone:hover, .upload-zone.drag-over { border-color: var(--accent); background: #fef9ec; }
+    .upload-zone:hover, .upload-zone.drag-over { border-color: var(--accent); background: rgba(254,95,85,0.08); }
     .upload-zone .icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
     .upload-zone h3 { font-size: 1rem; margin-bottom: 0.4rem; }
     .upload-zone p { font-size: 0.83rem; color: var(--text-muted); }
@@ -99,7 +99,7 @@
       cursor: pointer; text-align: center; transition: all 0.15s; font-size: 0.9rem;
     }
     .type-btn:hover { border-color: var(--accent); color: var(--text); }
-    .type-btn.active { background: #fef9ec; border-color: var(--accent); color: #7a5500; font-weight: 600; }
+    .type-btn.active { background: rgba(254,95,85,0.15); border-color: var(--accent); color: #ffb0aa; font-weight: 600; }
     .type-btn .type-icon { font-size: 1.4rem; margin-bottom: 0.3rem; }
 
     .log-box {
@@ -122,8 +122,8 @@
     .doc-table td { padding: 0.75rem; border-bottom: 1px solid var(--border); font-size: 0.87rem; }
     .doc-table tr:hover td { background: var(--surface2); }
     .status-badge { display: inline-block; padding: 0.2rem 0.55rem; border-radius: 4px; font-size: 0.72rem; font-weight: 600; }
-    .status-processed { background: #d4f0e0; color: #1a5a32; }
-    .status-error { background: #fde0e0; color: #8a1a1a; }
+    .status-processed { background: rgba(94,221,160,0.2); color: #5edda0; }
+    .status-error { background: rgba(255,107,107,0.2); color: #ff9090; }
     .empty-library { text-align: center; padding: 3rem; color: var(--text-muted); font-size: 0.88rem; }
 
     .stats-row { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
@@ -147,24 +147,24 @@
     .recipe-thumb-placeholder { width: 48px; height: 48px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
     .recipe-name-link { color: var(--text); cursor: pointer; font-weight: 600; border-bottom: 1px dashed var(--border); transition: color 0.15s; }
     .recipe-name-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
-    .btn-hide { background: #fef3d0; border: 1px solid #e8c84c; color: #7a5500; font-size: 0.78rem; padding: 0.3rem 0.75rem; border-radius: 5px; cursor: pointer; font-weight: 600; white-space: nowrap; }
-    .btn-hide:hover { background: #fdedb0; }
-    .btn-show { background: #d4f0e0; border: 1px solid #5abe8a; color: #1a5a32; font-size: 0.78rem; padding: 0.3rem 0.75rem; border-radius: 5px; cursor: pointer; font-weight: 600; white-space: nowrap; }
-    .btn-show:hover { background: #bae8d0; }
+    .btn-hide { background: rgba(254,95,85,0.15); border: 1px solid rgba(254,95,85,0.4); color: #ffb0aa; font-size: 0.78rem; padding: 0.3rem 0.75rem; border-radius: 5px; cursor: pointer; font-weight: 600; white-space: nowrap; }
+    .btn-hide:hover { background: rgba(254,95,85,0.25); }
+    .btn-show { background: rgba(94,221,160,0.15); border: 1px solid rgba(94,221,160,0.4); color: #5edda0; font-size: 0.78rem; padding: 0.3rem 0.75rem; border-radius: 5px; cursor: pointer; font-weight: 600; white-space: nowrap; }
+    .btn-show:hover { background: rgba(94,221,160,0.25); }
     .visible-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.4rem; }
-    .dot-on { background: #2d9a5a; }
-    .dot-off { background: #bbb; }
+    .dot-on { background: #5edda0; }
+    .dot-off { background: rgba(189,213,234,0.4); }
 
     /* Category manager */
     .cat-mgr { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 2rem; }
     .cat-mgr-head { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1.1rem; background: var(--surface2); border-bottom: 1px solid var(--border); }
     .cat-mgr-head h3 { font-size: 0.95rem; font-weight: 700; }
-    .cat-add-form { display: none; padding: 1rem 1.1rem; border-top: 1px solid var(--border); background: #fef9ec; gap: 0.75rem; flex-wrap: wrap; align-items: flex-end; }
+    .cat-add-form { display: none; padding: 1rem 1.1rem; border-top: 1px solid var(--border); background: rgba(254,95,85,0.08); gap: 0.75rem; flex-wrap: wrap; align-items: flex-end; }
     .cat-add-form.open { display: flex; }
     .cat-add-form > div { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; min-width: 140px; }
     .cat-add-form label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 700; }
     .cat-add-form input, .cat-add-form select {
-      background: var(--surface); border: 1px solid var(--border); color: var(--text);
+      background: var(--surface2); border: 1px solid var(--border); color: var(--text);
       padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.87rem; outline: none;
     }
     .cat-add-form input:focus, .cat-add-form select:focus { border-color: var(--accent); }
@@ -189,7 +189,7 @@
       padding: 0.55rem 0.8rem; border-radius: 6px; font-size: 0.87rem; outline: none;
       font-family: inherit; transition: border-color 0.15s;
     }
-    .edit-field input:focus, .edit-field textarea:focus, .edit-field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(201,168,76,0.1); }
+    .edit-field input:focus, .edit-field textarea:focus, .edit-field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(254,95,85,0.18); }
     .edit-field textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
     .edit-field textarea.tall { min-height: 130px; }
     .edit-hint { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.15rem; }
