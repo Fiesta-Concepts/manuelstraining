@@ -191,6 +191,13 @@
     .edit-image-row { grid-column: 1 / -1; display: flex; gap: 1rem; align-items: flex-start; flex-wrap: wrap; }
     .edit-image-preview { width: 100px; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); flex-shrink: 0; }
     .edit-image-placeholder { width: 100px; height: 100px; border-radius: 8px; border: 1px dashed var(--border); display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; background: var(--surface2); }
+    .img-gallery-grid { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .img-gallery-item { position: relative; width: 100px; flex-shrink: 0; }
+    .img-gallery-item img { width: 100px; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); display: block; }
+    .img-gallery-item .img-delete-btn { position: absolute; top: 4px; right: 4px; background: rgba(0,0,0,0.65); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 0.85rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .img-gallery-item .img-delete-btn:hover { background: var(--red); }
+    .img-primary-badge { display: block; text-align: center; font-size: 0.62rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 3px; }
+    .img-gallery-empty { color: var(--text-muted); font-size: 0.82rem; padding: 0.5rem 0; }
     .edit-footer { padding: 1rem 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 0.75rem; background: var(--surface2); }
     .save-status { font-size: 0.82rem; color: var(--green); align-self: center; display: none; font-weight: 600; }
 
@@ -754,23 +761,26 @@ Return ONLY a JSON code block with this exact structure:
       headers: {
         'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}`,
         'Content-Type': 'application/json',
-        'Prefer': method === 'POST' ? 'return=minimal' : ''
+        'Prefer': method === 'POST' ? 'return=representation' : ''
       },
       body: body ? JSON.stringify(body) : undefined
     });
     if (!res.ok) { const e = await res.text(); throw new Error(e); }
-    if (method === 'GET') return res.json();
+    if (method === 'GET' || method === 'POST') return res.json();
     return true;
   }
 
   async function saveToSupabase(data, type, fileName, photoFile = null) {
     data.source_file = fileName;
-    if (photoFile) {
+    const saved = await supabase('POST', type === 'recipe' ? 'recipes' : 'sops', data);
+    // For recipes, insert photo into recipe_images and sync image_url
+    if (type === 'recipe' && photoFile && saved?.[0]?.id) {
       try {
-        data.image_url = await uploadPhotoToStorage(photoFile);
-      } catch(e) { /* non-fatal — save without image */ }
+        const imageUrl = await uploadPhotoToStorage(photoFile);
+        await supabase('POST', 'recipe_images', { recipe_id: saved[0].id, image_url: imageUrl, sort_order: 0 });
+        await supabase('PATCH', `recipes?id=eq.${saved[0].id}`, { image_url: imageUrl });
+      } catch(e) { /* non-fatal */ }
     }
-    await supabase('POST', type === 'recipe' ? 'recipes' : 'sops', data);
     await supabase('POST', 'uploaded_documents', { file_name: fileName, file_type: fileName.split('.').pop(), doc_type: type, status: 'processed', extracted_count: 1 });
   }
 
@@ -854,17 +864,26 @@ Return ONLY a JSON code block with this exact structure:
     const catOptionsEn = recCats.map(c => `<option value="${c.name_en}" ${r.category_en===c.name_en?'selected':''}>${c.name_en}</option>`).join('');
     const catOptionsEs = recCats.map(c => `<option value="${c.name_es||c.name_en}" ${r.category_es===(c.name_es||c.name_en)?'selected':''}>${c.name_es||c.name_en}</option>`).join('');
 
+    // Fetch existing images for this recipe
+    const existingImages = await supabase('GET', `recipe_images?recipe_id=eq.${id}&order=sort_order.asc,created_at.asc`);
+    const galleryHtml = existingImages.length
+      ? existingImages.map((img, i) => `
+          <div class="img-gallery-item" id="img-item-${img.id}">
+            <img src="${img.image_url}" alt="Photo ${i+1}"/>
+            <button class="img-delete-btn" onclick="deleteRecipeImage(${img.id}, ${id})" title="Remove photo">×</button>
+            ${i === 0 ? '<span class="img-primary-badge">Primary</span>' : ''}
+          </div>`).join('')
+      : '<div class="img-gallery-empty">No photos yet.</div>';
+
     const arrToText = arr => Array.isArray(arr) ? arr.join('\n') : (arr || '');
 
     document.getElementById('edit-body').innerHTML = `
-      <div class="edit-section-label">Photo</div>
-      <div class="edit-image-row">
-        ${r.image_url ? `<img class="edit-image-preview" id="edit-img-preview" src="${r.image_url}" alt=""/>` : `<div class="edit-image-placeholder" id="edit-img-preview">🍴</div>`}
-        <div style="flex:1;min-width:200px">
-          <label style="display:block;margin-bottom:0.4rem;font-size:0.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.05em;font-weight:600">Replace Photo</label>
-          <input type="file" id="edit-photo-input" accept="image/*" onchange="previewEditPhoto(this)" style="background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:0.4rem 0.6rem;border-radius:6px;font-size:0.82rem;width:100%"/>
-          <div class="edit-hint">Leave blank to keep existing photo</div>
-        </div>
+      <div class="edit-section-label">Photos</div>
+      <div class="img-gallery-grid" id="edit-img-gallery">${galleryHtml}</div>
+      <div class="edit-field full" style="margin-top:0.5rem">
+        <label>Add Photos</label>
+        <input type="file" id="edit-photo-input" accept="image/*" multiple style="background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:0.4rem 0.6rem;border-radius:6px;font-size:0.82rem;width:100%"/>
+        <div class="edit-hint">Select one or more photos to add. First photo shown on the recipe card.</div>
       </div>
 
       <div class="edit-section-label">Video</div>
@@ -1031,9 +1050,18 @@ Return ONLY a JSON code block with this exact structure:
       };
 
       const photoInput = document.getElementById('edit-photo-input');
-      if (photoInput.files[0]) {
-        log('📷 Uploading new photo…', 'info');
-        updates.image_url = await uploadPhotoToStorage(photoInput.files[0]);
+      if (photoInput.files.length) {
+        const statusEl = document.getElementById('save-status');
+        for (let i = 0; i < photoInput.files.length; i++) {
+          statusEl.style.display = 'inline';
+          statusEl.textContent = `⏳ Uploading photo ${i+1} of ${photoInput.files.length}…`;
+          const url = await uploadPhotoToStorage(photoInput.files[i]);
+          await supabase('POST', 'recipe_images', { recipe_id: editingRecipeId, image_url: url, sort_order: i });
+        }
+        statusEl.style.display = 'none';
+        // Sync image_url on recipes to the first image
+        const imgs = await supabase('GET', `recipe_images?recipe_id=eq.${editingRecipeId}&order=sort_order.asc,created_at.asc&limit=1`);
+        if (imgs.length) updates.image_url = imgs[0].image_url;
       }
 
       const videoInput = document.getElementById('edit-video-input');
@@ -1140,6 +1168,30 @@ Return ONLY a JSON code block with this exact structure:
     if (!bar) return;
     const ts = localStorage.getItem('mt_last_upload');
     bar.textContent = ts ? `Last upload: ${ts}` : '';
+  }
+
+  // Delete an individual image from recipe_images and refresh image_url on recipes
+  async function deleteRecipeImage(imgId, recipeId) {
+    if (!confirm('Remove this photo?')) return;
+    try {
+      await supabase('DELETE', `recipe_images?id=eq.${imgId}`);
+      document.getElementById(`img-item-${imgId}`)?.remove();
+      // Re-sync primary image_url
+      const imgs = await supabase('GET', `recipe_images?recipe_id=eq.${recipeId}&order=sort_order.asc,created_at.asc&limit=1`);
+      const newPrimary = imgs.length ? imgs[0].image_url : null;
+      await supabase('PATCH', `recipes?id=eq.${recipeId}`, { image_url: newPrimary });
+      // Update primary badge
+      const gallery = document.getElementById('edit-img-gallery');
+      if (gallery) {
+        gallery.querySelectorAll('.img-primary-badge').forEach(b => b.remove());
+        const first = gallery.querySelector('.img-gallery-item');
+        if (first) first.insertAdjacentHTML('beforeend', '<span class="img-primary-badge">Primary</span>');
+        if (!gallery.querySelector('.img-gallery-item')) {
+          gallery.innerHTML = '<div class="img-gallery-empty">No photos yet.</div>';
+        }
+      }
+      loadRecipeManager();
+    } catch(e) { alert('Error removing photo: ' + e.message); }
   }
 
   // Auto-sync Spanish category when English category changes
