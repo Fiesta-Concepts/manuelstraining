@@ -362,7 +362,12 @@
 <script>
   const SUPABASE_URL = 'https://dagbgtnmastmcwjpqzvb.supabase.co';
   const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhZ2JndG5tYXN0bWN3anBxenZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxODczNTEsImV4cCI6MjA5MTc2MzM1MX0.G_arQB1He1KvcS66JVXwCCKzbpaDPCkXQ5tQuZPGc3I';
-  const ADMIN_PASSWORD = 'training2024';
+  const ADMIN_PASSWORD_HASH = 'a82edd3a28d6c6e5e821f8696544270986a8a0cc0490de467985a3c4d87fac1c';
+
+  async function hashPassword(pwd) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pwd));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -370,9 +375,9 @@
   let allCategories = [];
 
   // ── Auth ──
-  function login() {
+  async function login() {
     const pwd = document.getElementById('pwd-input').value;
-    if (pwd === ADMIN_PASSWORD) {
+    if (await hashPassword(pwd) === ADMIN_PASSWORD_HASH) {
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('app').style.display = 'block';
       loadApiKey();
