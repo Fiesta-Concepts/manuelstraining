@@ -330,7 +330,6 @@
     <!-- Document Library -->
     <div class="library-header" style="margin-top:2.5rem">
       <div class="section-title" style="margin:0">Uploaded Documents</div>
-      <button class="btn btn-danger btn-sm" onclick="clearAllData()">Clear All Data</button>
     </div>
     <div id="doc-library"></div>
   </main>
@@ -799,15 +798,6 @@ Return ONLY a JSON code block with this exact structure:
     } catch(e) { lib.innerHTML = '<div class="empty-library">Could not load documents.</div>'; }
   }
 
-  async function clearAllData() {
-    if (!confirm('Delete ALL recipes, SOPs, and document history? This cannot be undone.')) return;
-    try {
-      await supabase('DELETE','recipes?id=gte.0');
-      await supabase('DELETE','sops?id=gte.0');
-      await supabase('DELETE','uploaded_documents?id=gte.0');
-      loadStats(); loadDocLibrary(); log('✓ All data cleared', 'ok');
-    } catch(e) { log('✗ Error: ' + e.message, 'err'); }
-  }
 
   // ── Category Manager ──
   function toggleAddCatForm() {
