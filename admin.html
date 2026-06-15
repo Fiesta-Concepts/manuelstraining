@@ -6,6 +6,7 @@
   <title>Admin — Manuel's Training App</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <style>
     html { font-size: 17px; }
     :root {
@@ -468,7 +469,16 @@
           updateCard(cardId, 'Extracting text + image…', 'spin');
         }
       } else if (file.name.endsWith('.docx') || file.name.endsWith('.doc')) {
-        text = await extractWord(file);
+        const buffer = await file.arrayBuffer();
+        const isDoc = file.name.toLowerCase().endsWith('.doc') && !file.name.toLowerCase().endsWith('.docx');
+        text = isDoc ? extractLegacyDocText(buffer) : (await mammoth.extractRawText({ arrayBuffer: buffer })).value;
+        // Try to pull an embedded image
+        const imgBlob = isDoc ? extractImageFromDoc(buffer) : await extractImageFromDocx(buffer);
+        if (imgBlob) {
+          const ext = imgBlob.type.includes('png') ? 'png' : 'jpg';
+          autoPhotoFile = new File([imgBlob], file.name.replace(/\.\w+$/, `.${ext}`), { type: imgBlob.type });
+          updateCard(cardId, 'Extracted text + image…', 'spin');
+        }
       } else {
         text = await file.text();
       }
@@ -538,6 +548,71 @@
 
     // .doc binary — scan bytes directly for text
     return extractLegacyDocText(await file.arrayBuffer());
+  }
+
+  // Extract the first large JPEG or PNG image embedded in a binary .doc file
+  function extractImageFromDoc(buffer) {
+    const bytes = new Uint8Array(buffer);
+
+    // Scan for JPEG magic: FF D8 FF
+    let bestJpeg = null;
+    for (let i = 0; i < bytes.length - 3; i++) {
+      if (bytes[i] === 0xFF && bytes[i + 1] === 0xD8 && bytes[i + 2] === 0xFF) {
+        // Find the LAST FF D9 end marker from this start
+        let end = -1;
+        for (let j = i + 2; j < bytes.length - 1; j++) {
+          if (bytes[j] === 0xFF && bytes[j + 1] === 0xD9) end = j + 2;
+        }
+        if (end !== -1) {
+          const candidate = bytes.slice(i, end);
+          if (candidate.length > 10000 && (!bestJpeg || candidate.length > bestJpeg.length)) {
+            bestJpeg = candidate;
+          }
+        }
+        // Skip past this candidate
+        if (end !== -1) i = end - 1;
+      }
+    }
+    if (bestJpeg) return new Blob([bestJpeg], { type: 'image/jpeg' });
+
+    // Scan for PNG magic: 89 50 4E 47 0D 0A 1A 0A
+    for (let i = 0; i < bytes.length - 8; i++) {
+      if (bytes[i] === 0x89 && bytes[i + 1] === 0x50 && bytes[i + 2] === 0x4E && bytes[i + 3] === 0x47
+          && bytes[i + 4] === 0x0D && bytes[i + 5] === 0x0A) {
+        // Find IEND chunk marker: 49 45 4E 44
+        for (let j = i + 8; j < bytes.length - 7; j++) {
+          if (bytes[j] === 0x49 && bytes[j + 1] === 0x45 && bytes[j + 2] === 0x4E && bytes[j + 3] === 0x44) {
+            const candidate = bytes.slice(i, j + 8); // IEND + 4-byte CRC
+            if (candidate.length > 10000) return new Blob([candidate], { type: 'image/png' });
+            break;
+          }
+        }
+      }
+    }
+
+    return null;
+  }
+
+  // Extract the first image from a .docx ZIP's word/media/ folder
+  async function extractImageFromDocx(buffer) {
+    try {
+      const zip = await JSZip.loadAsync(buffer);
+      const mediaFiles = [];
+      zip.folder('word/media').forEach((relPath, file) => {
+        if (/\.(jpe?g|png|gif|bmp|webp)$/i.test(relPath)) mediaFiles.push(file);
+      });
+      if (!mediaFiles.length) return null;
+      // Pick the largest image (most likely the recipe photo, not a small logo)
+      let best = null, bestSize = 0;
+      for (const f of mediaFiles) {
+        const ab = await f.async('arraybuffer');
+        if (ab.byteLength > bestSize) { best = { ab, name: f.name }; bestSize = ab.byteLength; }
+      }
+      if (!best || best.ab.byteLength < 10000) return null;
+      const ext = best.name.split('.').pop().toLowerCase();
+      const mime = (ext === 'jpg' || ext === 'jpeg') ? 'image/jpeg' : `image/${ext}`;
+      return new Blob([best.ab], { type: mime });
+    } catch (e) { return null; }
   }
 
   function extractLegacyDocText(buffer) {
