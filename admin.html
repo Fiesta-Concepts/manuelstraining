@@ -1089,7 +1089,7 @@ Return ONLY a JSON code block with this exact structure:
               ${r.visible
                 ? `<button class="btn-hide" onclick="toggleRecipeVisibility(${r.id}, false)">Hide</button>`
                 : `<button class="btn-show" onclick="toggleRecipeVisibility(${r.id}, true)">Show</button>`}
-              <button class="btn-del" onclick="deleteRecipe(${r.id}, ${JSON.stringify(r.name_en || r.name_es || 'this recipe')})">Delete</button>
+              <button class="btn-del" data-id="${r.id}" data-name="${(r.name_en || r.name_es || 'this recipe').replace(/"/g, '&quot;')}" onclick="deleteRecipe(this.dataset.id, this.dataset.name)">Delete</button>
             </td>
           </tr>`).join('')}
         </tbody>
