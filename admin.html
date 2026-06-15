@@ -322,7 +322,7 @@
         </div>
       </div>
       <table class="cat-table" id="cat-table-body">
-        <thead><tr><th>Type</th><th>Name (EN)</th><th>Name (ES)</th></tr></thead>
+        <thead><tr><th>Type</th><th>Name (EN)</th><th>Name (ES)</th><th></th></tr></thead>
         <tbody id="cat-rows"></tbody>
       </table>
     </div>
@@ -824,12 +824,60 @@ Return ONLY a JSON code block with this exact structure:
 
   function renderCategoryTable() {
     const tbody = document.getElementById('cat-rows');
-    if (!allCategories.length) { tbody.innerHTML = '<tr><td colspan="3" style="color:var(--text-muted);padding:1rem">No categories yet.</td></tr>'; return; }
-    tbody.innerHTML = allCategories.map(c => `<tr>
-      <td><span class="cat-type-pill">${c.type}</span></td>
-      <td>${c.name_en}</td>
-      <td style="color:var(--text-muted)">${c.name_es||'—'}</td>
-    </tr>`).join('');
+    if (!allCategories.length) { tbody.innerHTML = '<tr><td colspan="4" style="color:var(--text-muted);padding:1rem">No categories yet.</td></tr>'; return; }
+    tbody.innerHTML = allCategories.map(c => `
+      <tr id="cat-row-${c.id}">
+        <td><span class="cat-type-pill">${c.type}</span></td>
+        <td>${c.name_en}</td>
+        <td style="color:var(--text-muted)">${c.name_es||'—'}</td>
+        <td style="white-space:nowrap;text-align:right">
+          <button class="btn-hide" style="font-size:0.75rem;padding:0.2rem 0.6rem" onclick="startEditCategory(${c.id})">Edit</button>
+          <button class="btn-del" style="font-size:0.75rem;padding:0.2rem 0.6rem" onclick="deleteCategory(${c.id}, ${JSON.stringify(c.name_en)})">Delete</button>
+        </td>
+      </tr>
+      <tr id="cat-edit-${c.id}" style="display:none;background:var(--surface2)">
+        <td>
+          <select id="cedit-type-${c.id}" style="background:var(--surface);border:1px solid var(--border);color:var(--text);padding:0.3rem 0.5rem;border-radius:5px;font-size:0.82rem">
+            <option value="recipe" ${c.type==='recipe'?'selected':''}>recipe</option>
+            <option value="sop" ${c.type==='sop'?'selected':''}>sop</option>
+          </select>
+        </td>
+        <td><input id="cedit-en-${c.id}" value="${c.name_en}" style="background:var(--surface);border:1px solid var(--border);color:var(--text);padding:0.3rem 0.5rem;border-radius:5px;font-size:0.82rem;width:100%"/></td>
+        <td><input id="cedit-es-${c.id}" value="${c.name_es||''}" style="background:var(--surface);border:1px solid var(--border);color:var(--text);padding:0.3rem 0.5rem;border-radius:5px;font-size:0.82rem;width:100%"/></td>
+        <td style="white-space:nowrap;text-align:right">
+          <button class="btn" style="font-size:0.75rem;padding:0.2rem 0.7rem" onclick="saveCategoryEdit(${c.id})">Save</button>
+          <button class="btn-ghost" style="font-size:0.75rem;padding:0.2rem 0.6rem;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:5px;cursor:pointer" onclick="cancelEditCategory(${c.id})">Cancel</button>
+        </td>
+      </tr>`).join('');
+  }
+
+  function startEditCategory(id) {
+    document.getElementById(`cat-row-${id}`).style.display = 'none';
+    document.getElementById(`cat-edit-${id}`).style.display = '';
+  }
+
+  function cancelEditCategory(id) {
+    document.getElementById(`cat-edit-${id}`).style.display = 'none';
+    document.getElementById(`cat-row-${id}`).style.display = '';
+  }
+
+  async function saveCategoryEdit(id) {
+    const type = document.getElementById(`cedit-type-${id}`).value;
+    const name_en = document.getElementById(`cedit-en-${id}`).value.trim();
+    const name_es = document.getElementById(`cedit-es-${id}`).value.trim();
+    if (!name_en) { alert('Name (English) is required.'); return; }
+    try {
+      await supabase('PATCH', `categories?id=eq.${id}`, { type, name_en, name_es });
+      await loadCategories();
+    } catch(e) { alert('Error saving category: ' + e.message); }
+  }
+
+  async function deleteCategory(id, name) {
+    if (!confirm(`Delete category "${name}"?\n\nThis won't delete recipes in this category, but they'll have no matching category.`)) return;
+    try {
+      await supabase('DELETE', `categories?id=eq.${id}`);
+      await loadCategories();
+    } catch(e) { alert('Error deleting category: ' + e.message); }
   }
 
   async function addCategory() {
