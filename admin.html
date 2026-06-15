@@ -142,6 +142,9 @@
     .btn-hide:hover { background: rgba(217,217,217,0.22); }
     .btn-show { background: rgba(94,221,160,0.15); border: 1px solid rgba(94,221,160,0.4); color: #5edda0; font-size: 0.78rem; padding: 0.3rem 0.75rem; border-radius: 5px; cursor: pointer; font-weight: 600; white-space: nowrap; }
     .btn-show:hover { background: rgba(94,221,160,0.25); }
+    .btn-del { background: rgba(220,60,60,0.15); border: 1px solid rgba(220,60,60,0.4); color: #e07070; font-size: 0.78rem; padding: 0.3rem 0.75rem; border-radius: 5px; cursor: pointer; font-weight: 600; white-space: nowrap; margin-left: 0.4rem; }
+    .btn-del:hover { background: rgba(220,60,60,0.3); color: #ff9090; }
+    .last-upload-bar { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem; }
     .visible-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.4rem; }
     .dot-on { background: #5edda0; }
     .dot-off { background: rgba(189,213,234,0.4); }
@@ -229,7 +232,10 @@
 <!-- APP -->
 <div id="app">
   <header>
-    <div class="logo">Manuel's <span>Admin</span></div>
+    <div>
+      <div class="logo">Manuel's <span>Admin</span></div>
+      <div class="last-upload-bar" id="last-upload-bar"></div>
+    </div>
     <div class="header-right">
       <span class="badge-admin">Admin</span>
       <a href="index.html" class="btn btn-ghost" style="text-decoration:none;font-size:0.85rem">← View Site</a>
@@ -495,6 +501,7 @@
       const label = result.name_en || result.title_en || file.name;
       updateCard(cardId, `✓ Saved successfully`, 'ok',
         `${label}${autoPhotoFile ? ' · Photo attached' : ''}`);
+      setLastUpload();
     } catch(err) {
       updateCard(cardId, 'Error: ' + err.message, 'err');
     }
@@ -1088,10 +1095,11 @@ Return ONLY a JSON code block with this exact structure:
               <span class="visible-dot ${r.visible?'dot-on':'dot-off'}"></span>
               <span style="font-size:0.82rem;color:${r.visible?'var(--green)':'var(--text-muted)'}">${r.visible?'Visible':'Hidden'}</span>
             </td>
-            <td>
+            <td style="white-space:nowrap">
               ${r.visible
                 ? `<button class="btn-hide" onclick="toggleRecipeVisibility(${r.id}, false)">Hide</button>`
                 : `<button class="btn-show" onclick="toggleRecipeVisibility(${r.id}, true)">Show</button>`}
+              <button class="btn-del" onclick="deleteRecipe(${r.id}, ${JSON.stringify(r.name_en || r.name_es || 'this recipe')})">Delete</button>
             </td>
           </tr>`).join('')}
         </tbody>
@@ -1118,7 +1126,30 @@ Return ONLY a JSON code block with this exact structure:
     } catch(e) { alert('Error: ' + e.message); }
   }
 
+  async function deleteRecipe(id, name) {
+    if (!confirm(`Are you sure you want to delete "${name}"?\n\nThis will permanently remove the recipe and cannot be undone.`)) return;
+    try {
+      await supabase('DELETE', `recipes?id=eq.${id}`);
+      document.getElementById(`recipe-row-${id}`)?.remove();
+      loadStats();
+    } catch(e) { alert('Error deleting recipe: ' + e.message); }
+  }
+
+  // Last upload timestamp — stored in localStorage, shown in header
+  function setLastUpload() {
+    const ts = new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
+    localStorage.setItem('mt_last_upload', ts);
+    renderLastUpload();
+  }
+  function renderLastUpload() {
+    const bar = document.getElementById('last-upload-bar');
+    if (!bar) return;
+    const ts = localStorage.getItem('mt_last_upload');
+    bar.textContent = ts ? `Last upload: ${ts}` : '';
+  }
+
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEditDrawer(); });
+  renderLastUpload();
 </script>
 </body>
 </html>
