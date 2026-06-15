@@ -345,6 +345,7 @@
     <div class="edit-body" id="edit-body"></div>
     <div class="edit-footer">
       <span class="save-status" id="save-status">✓ Saved!</span>
+      <button class="btn btn-ghost" onclick="translateToSpanish()" id="translate-btn" style="font-size:0.82rem">🌐 Translate to Spanish</button>
       <button class="btn btn-ghost" onclick="closeEditDrawer()">Cancel</button>
       <button class="btn" onclick="saveRecipeEdits()">Save Changes</button>
     </div>
@@ -845,7 +846,10 @@ Return ONLY a JSON code block with this exact structure:
     document.getElementById('edit-drawer-title').textContent = `Edit: ${r.name_en}`;
     document.getElementById('save-status').style.display = 'none';
 
-    // Build category options from loaded categories
+    // Ensure we have a fresh category list (re-fetch if empty)
+    if (!allCategories.length) {
+      allCategories = await supabase('GET', 'categories?select=*&order=type.asc,name_en.asc');
+    }
     const recCats = allCategories.filter(c => c.type === 'recipe');
     const catOptionsEn = recCats.map(c => `<option value="${c.name_en}" ${r.category_en===c.name_en?'selected':''}>${c.name_en}</option>`).join('');
     const catOptionsEs = recCats.map(c => `<option value="${c.name_es||c.name_en}" ${r.category_es===(c.name_es||c.name_en)?'selected':''}>${c.name_es||c.name_en}</option>`).join('');
@@ -886,7 +890,7 @@ Return ONLY a JSON code block with this exact structure:
       <div class="edit-section-label">Category &amp; Timing</div>
       <div class="edit-field">
         <label>Category (English)</label>
-        <select id="ef-category_en">${catOptionsEn}</select>
+        <select id="ef-category_en" onchange="syncCategoryEs()">${catOptionsEn}</select>
       </div>
       <div class="edit-field">
         <label>Categoría (Español)</label>
@@ -1136,6 +1140,55 @@ Return ONLY a JSON code block with this exact structure:
     if (!bar) return;
     const ts = localStorage.getItem('mt_last_upload');
     bar.textContent = ts ? `Last upload: ${ts}` : '';
+  }
+
+  // Auto-sync Spanish category when English category changes
+  function syncCategoryEs() {
+    const enVal = document.getElementById('ef-category_en').value;
+    const match = allCategories.find(c => c.type === 'recipe' && c.name_en === enVal);
+    if (match && match.name_es) {
+      document.getElementById('ef-category_es').value = match.name_es;
+    }
+  }
+
+  // Translate all English text fields to Spanish using Claude
+  async function translateToSpanish() {
+    const apiKey = localStorage.getItem('mt_claude_key');
+    if (!apiKey) { alert('Please set your Claude API key first.'); return; }
+    const btn = document.getElementById('translate-btn');
+    btn.textContent = '🌐 Translating…'; btn.disabled = true;
+    try {
+      const fields = {
+        name: document.getElementById('ef-name_en').value,
+        description: document.getElementById('ef-description_en').value,
+        ingredients: document.getElementById('ef-ingredients_en').value,
+        steps: document.getElementById('ef-steps_en').value,
+        plating_description: document.getElementById('ef-plating_description_en').value,
+        plating_tips: document.getElementById('ef-plating_tips_en').value,
+      };
+      const prompt = `Translate the following recipe fields from English to Spanish. Return ONLY a JSON object with keys: name_es, description_es, ingredients_es, steps_es, plating_description_es, plating_tips_es. Preserve line breaks within fields exactly as given.\n\n${JSON.stringify(fields)}`;
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'content-type': 'application/json', 'anthropic-dangerous-direct-browser-access': 'true' },
+        body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 2048, messages: [{ role: 'user', content: prompt }] })
+      });
+      const data = await res.json();
+      const raw = data.content?.[0]?.text || '';
+      const jsonMatch = raw.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) throw new Error('No JSON in response');
+      const t = JSON.parse(jsonMatch[0]);
+      if (t.name_es) document.getElementById('ef-name_es').value = t.name_es;
+      if (t.description_es) document.getElementById('ef-description_es').value = t.description_es;
+      if (t.ingredients_es) document.getElementById('ef-ingredients_es').value = t.ingredients_es;
+      if (t.steps_es) document.getElementById('ef-steps_es').value = t.steps_es;
+      if (t.plating_description_es) document.getElementById('ef-plating_description_es').value = t.plating_description_es;
+      if (t.plating_tips_es) document.getElementById('ef-plating_tips_es').value = t.plating_tips_es;
+      syncCategoryEs();
+    } catch(e) {
+      alert('Translation failed: ' + e.message);
+    } finally {
+      btn.textContent = '🌐 Translate to Spanish'; btn.disabled = false;
+    }
   }
 
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEditDrawer(); });
