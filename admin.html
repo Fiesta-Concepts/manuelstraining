@@ -936,9 +936,15 @@ Return ONLY a JSON code block with this exact structure:
 
       <div class="edit-section-label">Video</div>
       <div class="edit-field full">
-        <label>Upload Video (MP4, MOV, WebM)</label>
-        <input type="file" id="edit-video-input" accept="video/*" onchange="previewEditVideo(this)" style="background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:0.4rem 0.6rem;border-radius:6px;font-size:0.82rem;width:100%"/>
-        ${r.video_url ? `<div class="edit-hint" style="color:var(--green)">✓ Video attached — <a href="${r.video_url}" target="_blank" style="color:var(--accent)">View current</a></div>` : '<div class="edit-hint">No video attached yet. Upload a video to show under the recipe photo.</div>'}
+        ${r.video_url ? `
+          <div id="current-video-block" style="margin-bottom:0.75rem">
+            <video src="${r.video_url}" controls style="width:100%;max-height:220px;border-radius:6px;border:1px solid var(--border);display:block"></video>
+            <button onclick="deleteRecipeVideo(${r.id})" style="margin-top:0.5rem;background:rgba(220,60,60,0.15);border:1px solid rgba(220,60,60,0.4);color:#e07070;font-size:0.78rem;padding:0.3rem 0.85rem;border-radius:5px;cursor:pointer;font-weight:600">🗑 Delete Video</button>
+          </div>
+          <label style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--accent);font-weight:600">Replace with New Video (MP4, MOV, WebM)</label>
+        ` : '<label style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--accent);font-weight:600">Upload Video (MP4, MOV, WebM)</label>'}
+        <input type="file" id="edit-video-input" accept="video/*" onchange="previewEditVideo(this)" style="background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:0.4rem 0.6rem;border-radius:6px;font-size:0.82rem;width:100%;margin-top:0.4rem"/>
+        ${!r.video_url ? '<div class="edit-hint">No video attached yet.</div>' : ''}
         <div id="edit-video-preview" style="display:none;margin-top:0.5rem">
           <video id="edit-video-player" src="" controls style="width:100%;max-height:200px;border-radius:6px;border:1px solid var(--border)"></video>
         </div>
@@ -1057,6 +1063,15 @@ Return ONLY a JSON code block with this exact structure:
       img.src = URL.createObjectURL(file);
       preview.replaceWith(img);
     }
+  }
+
+  async function deleteRecipeVideo(recipeId) {
+    if (!confirm('Delete this video? You can upload a new one afterwards.')) return;
+    try {
+      await supabase('PATCH', `recipes?id=eq.${recipeId}`, { video_url: null });
+      document.getElementById('current-video-block')?.remove();
+      loadRecipeManager();
+    } catch(e) { alert('Error deleting video: ' + e.message); }
   }
 
   function previewEditVideo(input) {
